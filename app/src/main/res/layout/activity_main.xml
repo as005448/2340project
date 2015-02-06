@@ -1,0 +1,42 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/container"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    tools:context=".MainActivity" tools:ignore="MergeRootFrame">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView android:text="welcome to our app" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="71dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="login in"
+        android:id="@+id/login_button"
+        android:onClick="loginPage"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="39dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="register"
+        android:id="@+id/register_button"
+        android:onClick="registerPage"
+        android:layout_below="@+id/login_button"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
+
+    </FrameLayout>
+
+
+
+
