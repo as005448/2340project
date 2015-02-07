@@ -14,11 +14,12 @@ import java.util.HashMap;
 
 
 public class Registration extends Activity {
-    public static UserData accounts = new UserData();
+    public static UserData accounts;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+        this.accounts = new UserData(this);
     }
 
 
