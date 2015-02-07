@@ -27,6 +27,10 @@ public class MainActivity extends Activity {
                 loginPage();
             }
         });
+
+        if(UserDBHandler.ctx == null){
+            UserDBHandler.ctx = this;
+        }
     }
 
 

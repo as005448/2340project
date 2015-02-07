@@ -9,17 +9,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.content.Context;
 
 import java.util.HashMap;
 
 
 public class Registration extends Activity {
-    public static UserData accounts;
+    public static UserData accounts = new UserData();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-        this.accounts = new UserData(this);
+        //this.accounts = new UserData(this);
     }
 
 

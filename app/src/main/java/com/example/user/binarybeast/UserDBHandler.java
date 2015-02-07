@@ -8,6 +8,12 @@ import android.content.ContentValues;
 
 import java.util.HashMap;
 
+
+/*
+ *  @author Marcus Godwin
+ *  @version 1.0
+ *
+ */
 public class UserDBHandler extends SQLiteOpenHelper {
     //Static vars
     private static final int DATABASE_VERSION = 1;
@@ -21,11 +27,36 @@ public class UserDBHandler extends SQLiteOpenHelper {
     //column names
     private static final String KEY_USER = "user";
     private static final String KEY_PASS = "pass";
-
-    public UserDBHandler(Context context){
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    
+    private static UserDBHandler instance = null;
+    
+    public static Context ctx = null;
+    /*
+     * Constructor for the database handler.
+     *
+     * @param context the android context creating the databasehandler
+     *
+     */
+    private UserDBHandler(){
+        super(ctx, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+    
+    /*
+     * Getter for instance of UserDBHandler
+     * @return the UserDBHandler
+     */
+    public static UserDBHandler getInstance() {
+        if (instance == null)
+            instance = new UserDBHandler();
+        return instance;
     }
 
+    /*
+     * Function called on the creation of the database.
+     *
+     * @param db the database to execute SQL commands on
+     *
+     */
     //Create tables
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -33,7 +64,15 @@ public class UserDBHandler extends SQLiteOpenHelper {
             + KEY_USER + " TEXT," + KEY_PASS + " TEXT" + ")";
         db.execSQL(CREATE_USERS_TABLE);
     }
-
+    
+    /*
+     * Upgrades the database to a new version.
+     *
+     * @param db the database to execute SQL commands on
+     * @param oldV the old database version number
+     * @param newV the new database version number
+     *
+     */
     //For upgrading database
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldV, int newV) {
@@ -46,7 +85,14 @@ public class UserDBHandler extends SQLiteOpenHelper {
 
 
     //Create, Read, Update, and Delete ops
-
+    
+    /*
+     * Adds the user and password information to the database.
+     *
+     * @param user the username of the user to add
+     * @param pass the password of the user to add
+     *
+     */
     //Add new users
     public void addUser(String user, String pass) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -58,7 +104,17 @@ public class UserDBHandler extends SQLiteOpenHelper {
         db.insert(TABLE_USERS, null, values);
         db.close();
     }
-
+    
+    /*
+     * Checks the current user against the database to see if they are
+     * already registered.
+     *
+     * @param user the name of the user to check if they are already
+     * registered.
+     *
+     * @return true if the user is registered, otherwise false
+     *
+     */
     public boolean isRegistered(String user) {
         boolean res = false;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -70,7 +126,13 @@ public class UserDBHandler extends SQLiteOpenHelper {
         res = cursor.moveToFirst();
         return res;
     }
-
+    /*
+     *  Returns the all of users and passwords 
+     *  registered with the app as a hashmap.
+     *  
+     *  @return a hashmap of users and their passwords
+     *
+     */
     public HashMap<String, String> getAllUsers(){
         HashMap<String, String> userList = new HashMap<String, String>();
         String grabQuery = "SELECT * FROM " + TABLE_USERS;
