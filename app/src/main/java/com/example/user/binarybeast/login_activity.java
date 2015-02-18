@@ -29,7 +29,8 @@ public class login_activity extends Activity {
         if (Registration.accounts.existAccount(username)) {
             if (Registration.accounts.verifyAccount(username, password)) {
                 //start activity, say you logged in, whatevers
-                Intent intent = new Intent(this, HomePage.class);
+                Registration.accounts.setCurrentUser(username);
+                Intent intent = new Intent(this, HubActivity.class);
                 startActivity(intent);
             } else {
                 Toast.makeText(login_activity.this, "Password incorrect!", Toast.LENGTH_LONG).show();
