@@ -54,6 +54,14 @@
             android:name=".Registration"
             android:label="@string/title_activity_registration" >
         </activity>
+        <activity
+            android:name=".HubActivity"
+            android:label="@string/title_activity_hub" >
+        </activity>
+        <activity
+            android:name=".FriendAdderActivity"
+            android:label="@string/title_activity_friend_adder" >
+        </activity>
     </application>
 
 </manifest>
