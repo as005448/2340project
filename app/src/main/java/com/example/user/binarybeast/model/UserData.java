@@ -31,7 +31,7 @@ public class UserData {
         this.email = email;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
@@ -162,5 +162,14 @@ public class UserData {
         friends.put(user, newFriendPerson);
     }
 
-
+    @Override
+    public String toString() {
+        return "UserData{" +
+                ", id=" + id +
+                ", user='" + user + '\'' +
+                ", pass='" + pass + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

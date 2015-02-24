@@ -36,7 +36,7 @@ public class FriendTable {
         return post;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 

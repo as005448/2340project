@@ -134,7 +134,6 @@ public class UserDBHandler extends SQLiteOpenHelper {
     }
     public long addUser(String user, String pass, String email, String name) {
         SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues values = new ContentValues();
         values.put(KEY_USER, user);
         values.put(KEY_PASS, pass);
@@ -156,6 +155,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
         if (c != null) {
             c.moveToFirst();
         } else {
+            db.close();
             return null;
         }
 
@@ -165,7 +165,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
         user.setPass(c.getString(c.getColumnIndex(KEY_PASS)));
         user.setName(c.getString(c.getColumnIndex(KEY_NAME)));
         user.setEmail(c.getString(c.getColumnIndex(KEY_EMAIL)));
-
+        db.close();
         return user;
     }
     /*
@@ -182,9 +182,11 @@ public class UserDBHandler extends SQLiteOpenHelper {
         Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
+        int i = 0;
         if (c.moveToFirst()) {
             do {
                 UserData user = new UserData();
+
                 user.setId(c.getInt(c.getColumnIndex(KEY_ID)));
                 user.setUser((c.getString(c.getColumnIndex(KEY_USER))));
                 user.setPass(c.getString(c.getColumnIndex(KEY_PASS)));
@@ -192,9 +194,11 @@ public class UserDBHandler extends SQLiteOpenHelper {
                 user.setEmail(c.getString(c.getColumnIndex(KEY_EMAIL)));
 
                 // adding to USER list
-                users.add(user);
+                users.add(i, user);
+                i++;
             } while (c.moveToNext());
         }
+         db.close();
         return users;
     }
     public List<FriendTable> getFriendTable() {
@@ -219,6 +223,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
                 friendTable.add(friend);
             } while (c.moveToNext());
         }
+        db.close();
         return friendTable;
     }
     public long addFriend(long user_id, long friend_id) {
@@ -237,13 +242,14 @@ public class UserDBHandler extends SQLiteOpenHelper {
         values.put(KEY_FRIEND_POST, 0);
 
         db.insert(TABLE_FRIEND, null, values2);
-
+        db.close();
         return id;
     }
     public void deleteFriend(long friend_id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_FRIEND, KEY_ID + " = ?",
                 new String[] { String.valueOf(friend_id) });
+        db.close();
     }
     public void closeDB() {
         SQLiteDatabase db = this.getReadableDatabase();

@@ -11,9 +11,10 @@ import android.widget.Toast;
 
 import com.example.user.binarybeast.model.UserData;
 
+import java.util.NoSuchElementException;
+
 
 public class Registration extends Activity {
-    public static UserData accounts = new UserData();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,16 +53,22 @@ public class Registration extends Activity {
         EditText usernameEntry = (EditText) findViewById(R.id.r_userName);
         EditText passwordEntry = (EditText) findViewById(R.id.r_passWord);
         EditText vPasswordEntry = (EditText) findViewById(R.id.r_verifyPass);
+        EditText nameEntry = (EditText) findViewById(R.id.log_name);
+        EditText emailEntry = (EditText) findViewById(R.id.log_email);
         String username = usernameEntry.getText().toString();
         String password = passwordEntry.getText().toString();
         String vPassword = vPasswordEntry.getText().toString();
+        String name = nameEntry.getText().toString();
+        String email = emailEntry.getText().toString();
         if (vPassword.equals(password)) {
-            if (accounts.existAccount(username)) {
+            try {
+                UserData user = login_activity.helper.findUser(username);
                 Toast.makeText(Registration.this, "The username has been used", Toast.LENGTH_LONG).show();
-            } else {
-                accounts.addAccount(username, password);
+
+            } catch (NoSuchElementException e) {
+                login_activity.helper.addUser(username, password, name, email);
                 Toast.makeText(Registration.this, "You made it!", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(this,MainActivity.class);
+                Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
             }
         } else {

@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.NoSuchElementException;
+
 
 public class FriendAdderActivity extends ActionBarActivity {
 
@@ -49,9 +51,13 @@ public class FriendAdderActivity extends ActionBarActivity {
         EditText friendEmail = (EditText) findViewById(R.id.r_friendEmail);
         String name = friendName.getText().toString();
         String email = friendEmail.getText().toString();
-        Registration.accounts.addFriend(name, email);
-        Toast.makeText(FriendAdderActivity.this, "Friend Added!!!", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(this, HubActivity.class);
-        startActivity(intent);
+        try {
+            login_activity.helper.addFriend(name, email);
+            Toast.makeText(FriendAdderActivity.this, "Friend Added.", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this, HubActivity.class);
+            startActivity(intent);
+        } catch (NoSuchElementException e) {
+            Toast.makeText(FriendAdderActivity.this, "User does not exist", Toast.LENGTH_LONG).show();
+        }
     }
 }

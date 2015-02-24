@@ -211,11 +211,12 @@ public class HubActivity extends ActionBarActivity implements ActionBar.TabListe
                     notFriendList.setAdapter(adapter);
                 }
             } else {
-                Set<String> users = Registration.accounts.getUserList();
-                String currentUser = Registration.accounts.getCurrentUser();
-                users.remove(currentUser);
-                ArrayList<String> Friends = new ArrayList<>();
-                Friends.addAll(users);
+//                Set<String> users = Registration.accounts.getUserList();
+//                String currentUser = Registration.accounts.getCurrentUser();
+//                users.remove(currentUser);
+//                ArrayList<String> Friends = new ArrayList<>();
+//                Friends.addAll(users);
+                ArrayList<String> Friends = login_activity.helper.getFriendName();
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
                         android.R.layout.simple_list_item_1, Friends);
 
