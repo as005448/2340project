@@ -1,9 +1,9 @@
-package com.example.user.binarybeast;
+package com.example.user.binarybeast.model;
 
 import java.util.HashMap;
 import java.util.Set;
 
-import android.content.Context;
+import com.example.user.binarybeast.helper.UserDBHandler;
 
 /**
  * Created by Administrator on 2015/2/5.
@@ -19,10 +19,62 @@ public class UserData {
     private String currentUser;
     public HashMap<String, Friend> friends;
 
+    private int id;
+    private String user;
+    private String pass;
+    private String name;
+    private String email;
+    public UserData(String user, String pass, String name, String email) {
+        this.user = user;
+        this.pass = pass;
+        this.name = name;
+        this.email = email;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     /* Constructor for the UserData.
-     *
-     * @param context of activity creating it.
-     */
+             *
+             * @param context of activity creating it.
+             */
     public UserData() {
         //this.account = new HashMap<String, String>();
         this.dbhandler = UserDBHandler.getInstance();
@@ -35,7 +87,6 @@ public class UserData {
             friends.put(s, temp);
         }
     }
-      
 
     /*
      *  Adds a new account to the list of registered users.

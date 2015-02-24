@@ -14,10 +14,11 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
+        android:uiOptions="splitActionBarWhenNarrow"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
@@ -27,21 +28,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login"
-            android:windowSoftInputMode="adjustResize|stateHidden" >
-        </activity>
+
 
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login"
-            android:windowSoftInputMode="adjustResize|stateHidden" >
-        </activity>
+
         <activity
             android:name=".login_activity"
             android:label="@string/title_activity_login_activity" >
@@ -56,11 +49,15 @@
         </activity>
         <activity
             android:name=".HubActivity"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
             android:label="@string/title_activity_hub" >
+            <meta-data android:name="android.support.UI_OPTIONS"
+                android:value="splitActionBarWhenNarrow" />
         </activity>
         <activity
             android:name=".FriendAdderActivity"
-            android:label="@string/title_activity_friend_adder" >
+            android:label="Search Friend"
+            android:parentActivityName=".HubActivity">
         </activity>
     </application>
 

@@ -10,11 +10,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.user.binarybeast.helper.Helper;
+import com.example.user.binarybeast.model.UserData;
+
 import java.util.HashMap;
 
 
 public class login_activity extends Activity {
-
+//    public static Helper helper = new Helper();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

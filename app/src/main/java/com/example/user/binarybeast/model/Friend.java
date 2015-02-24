@@ -1,4 +1,4 @@
-package com.example.user.binarybeast;
+package com.example.user.binarybeast.model;
 
 /**
  * Created by marcus on 2/12/15.
