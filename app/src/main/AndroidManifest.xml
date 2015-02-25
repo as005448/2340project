@@ -64,6 +64,11 @@
             android:name=".MyMain"
             android:label="MyMain" >
         </activity>
+        <activity
+            android:name=".view.FriendDetail_activity"
+            android:label="Friend Detail"
+            android:parentActivityName=".MyMain">
+        </activity>
     </application>
 
 </manifest>

@@ -10,10 +10,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.user.binarybeast.view.FriendDetail_activity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -184,9 +189,21 @@ public class MyMain extends Activity implements View.OnClickListener {
         ArrayList<String> Friends = login_activity.helper.getFriendName();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, Friends);
-
-        ListView FriendList = (ListView) view.findViewById(R.id.tab2_listView);
-        FriendList.setAdapter(adapter);
+        ListView friendList = (ListView) view.findViewById(R.id.tab2_listView);
+        friendList.setAdapter(adapter);
+        friendList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TextView textView = (TextView) view;
+                String name = textView.getText().toString();
+                Intent intent = new Intent(getInstance(), FriendDetail_activity.class);
+                intent.putExtra("name", name);
+                startActivity(intent);
+            }
+        });
+    }
+    private MyMain getInstance() {
+        return this;
     }
     public void AddFriend(View view) {
         Intent intent = new Intent(this, FriendAdderActivity.class);

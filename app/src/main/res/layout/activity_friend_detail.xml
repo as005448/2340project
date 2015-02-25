@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="84dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Name:"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/textView_name" />
+
+    <TextView
+        android:layout_width="84dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Email:"
+        android:id="@+id/textView_email"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/textView_name"
+        android:layout_alignLeft="@+id/textView_name"
+        android:layout_alignStart="@+id/textView_name" />
+
+    <TextView
+        android:layout_width="84dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Rate:"
+        android:id="@+id/textView_rate"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/textView_email"
+        android:layout_alignLeft="@+id/textView_email"
+        android:layout_alignStart="@+id/textView_email" />
+
+    <TextView
+        android:layout_width="84dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Report:"
+        android:id="@+id/textView_report"
+        android:layout_below="@+id/textView_rate"
+        android:layout_alignLeft="@+id/textView_rate"
+        android:layout_alignStart="@+id/textView_rate"
+        android:layout_marginTop="25dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="name"
+        android:id="@+id/textView_disName"
+        android:layout_above="@+id/textView_email"
+        android:layout_toRightOf="@+id/textView_name"
+        android:layout_toEndOf="@+id/textView_name" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Email"
+        android:id="@+id/textView_disEmail"
+        android:layout_above="@+id/textView_rate"
+        android:layout_alignLeft="@+id/textView_disName"
+        android:layout_alignStart="@+id/textView_disName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Rate"
+        android:id="@+id/textView_disRate"
+        android:layout_above="@+id/textView_report"
+        android:layout_toRightOf="@+id/textView_rate"
+        android:layout_toEndOf="@+id/textView_rate" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Report"
+        android:id="@+id/textView_disReport"
+        android:layout_alignTop="@+id/textView_report"
+        android:layout_toRightOf="@+id/textView_report"
+        android:layout_toEndOf="@+id/textView_report" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete Friend"
+        android:id="@+id/button_deFriend"
+        android:layout_below="@+id/textView_report"
+        android:layout_centerHorizontal="true"
+        android:onClick="deleteFriend"
+        android:layout_marginTop="58dp" />
+
+</RelativeLayout>
