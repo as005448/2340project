@@ -13,7 +13,7 @@ import com.example.user.binarybeast.helper.UserDBHandler;
 
 
 public class MainActivity extends Activity {
-
+    public static Helper helper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +25,9 @@ public class MainActivity extends Activity {
                 loginPage();
             }
         });
-
+        if (helper == null) {
+            helper = new Helper(getApplicationContext());
+        }
         if(UserDBHandler.ctx == null){
             UserDBHandler.ctx = this;
         }

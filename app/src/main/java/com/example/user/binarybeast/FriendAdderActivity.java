@@ -52,7 +52,7 @@ public class FriendAdderActivity extends ActionBarActivity {
         String name = friendName.getText().toString();
         String email = friendEmail.getText().toString();
         try {
-            login_activity.helper.addFriend(name, email);
+            MainActivity.helper.addFriend(name, email);
             Toast.makeText(FriendAdderActivity.this, "Friend Added.", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, MyMain.class);
             startActivity(intent);

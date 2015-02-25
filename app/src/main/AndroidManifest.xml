@@ -58,11 +58,14 @@
         <activity
             android:name=".FriendAdderActivity"
             android:label="Search Friend"
-            android:parentActivityName=".HubActivity">
+            android:parentActivityName=".MyMain">
         </activity>
         <activity
             android:name=".MyMain"
+            android:theme="@style/Theme.AppCompat.Light"
             android:label="MyMain" >
+            <meta-data android:name="android.support.UI_OPTIONS"
+                android:value="splitActionBarWhenNarrow" />
         </activity>
         <activity
             android:name=".view.FriendDetail_activity"

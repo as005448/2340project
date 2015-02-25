@@ -1,5 +1,6 @@
 package com.example.user.binarybeast.helper;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.Cursor;
@@ -7,6 +8,7 @@ import android.content.Context;
 import android.content.ContentValues;
 import android.util.Log;
 
+import com.example.user.binarybeast.MainActivity;
 import com.example.user.binarybeast.model.FriendTable;
 import com.example.user.binarybeast.model.UserData;
 
@@ -55,19 +57,19 @@ public class UserDBHandler extends SQLiteOpenHelper {
      * @param context the android context creating the databasehandler
      *
      */
-    private UserDBHandler(){
-        super(ctx, DATABASE_NAME, null, DATABASE_VERSION);
+    public UserDBHandler(Context context){
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
     
     /*
      * Getter for instance of UserDBHandler
      * @return the UserDBHandler
      */
-    public static UserDBHandler getInstance() {
-        if (instance == null)
-            instance = new UserDBHandler();
-        return instance;
-    }
+//    public static UserDBHandler getInstance() {
+//        if (instance == null)
+//            instance = new UserDBHandler();
+//        return instance;
+//    }
 
     /*
      * Function called on the creation of the database.
@@ -122,23 +124,26 @@ public class UserDBHandler extends SQLiteOpenHelper {
      *
      */
     //Add new users
-    public void addUser(String user, String pass) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_USER, user);
-        values.put(KEY_PASS, pass);
-
-        db.insert(TABLE_USERS, null, values);
-        db.close();
-    }
+//    public void addUser(String user, String pass) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//
+//        ContentValues values = new ContentValues();
+//        values.put(KEY_USER, user);
+//        values.put(KEY_PASS, pass);
+//
+//        db.insert(TABLE_USERS, null, values);
+//        db.close();
+//    }
     public long addUser(String user, String pass, String name, String email) {
+        Log.e(LOG,  "" + (this == null));
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_USER, user);
         values.put(KEY_PASS, pass);
         values.put(KEY_NAME, name);
         values.put(KEY_EMAIL, email);
+        values.put(KEY_POST, 0);
+        values.put(KEY_RATE, 0);
 
         long userID = db.insert(TABLE_USERS, null, values);
         db.close();
@@ -192,6 +197,8 @@ public class UserDBHandler extends SQLiteOpenHelper {
                 user.setPass(c.getString(c.getColumnIndex(KEY_PASS)));
                 user.setName(c.getString(c.getColumnIndex(KEY_NAME)));
                 user.setEmail(c.getString(c.getColumnIndex(KEY_EMAIL)));
+                user.setRate(c.getInt(c.getColumnIndex(KEY_RATE)));
+                user.setPost(c.getInt(c.getColumnIndex(KEY_POST)));
 
                 // adding to USER list
                 users.add(i, user);
@@ -245,17 +252,37 @@ public class UserDBHandler extends SQLiteOpenHelper {
         db.close();
         return id;
     }
-    public void deleteFriend(long friend_id) {
+    public List<Integer> getFriendPair(int user, int friend) {
+        List<Integer> pair = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "SELECT * FROM " + TABLE_FRIEND + " WHERE "
+                + KEY_USER_ID + " = '" + user + "' AND " + KEY_FRIEND_ID
+                + " = '" + friend + "';";
+        Log.e(LOG, selectQuery);
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                pair.add(cursor.getInt(cursor.getColumnIndex(KEY_ID)));
+            } while (cursor.moveToNext());
+        }
+        db.close();
+        return pair;
+    }
+    public void deleteFriend(int user, int friend) {
+        List<Integer> pair = getFriendPair(user, friend);
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_FRIEND, KEY_ID + " = ?",
-                new String[] { String.valueOf(friend_id) });
+        for (int i:pair) {
+            db.delete(TABLE_FRIEND, KEY_ID + " = ?",
+                    new String[]{String.valueOf(i)});
+        }
         db.close();
     }
-    public void closeDB() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        if (db != null && db.isOpen())
-            db.close();
-    }
+//    public void deleteFriend(long friend_id) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        db.delete(TABLE_FRIEND, KEY_ID + " = ?",
+//                new String[] { String.valueOf(friend_id) });
+//        db.close();
+//    }
 
     /*
      * Checks the current user against the database to see if they are
@@ -267,17 +294,17 @@ public class UserDBHandler extends SQLiteOpenHelper {
      * @return true if the user is registered, otherwise false
      *
      */
-    public boolean isRegistered(String user) {
-        boolean res = false;
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.query(TABLE_USERS, new String[] {
-            KEY_USER, KEY_PASS }, KEY_USER + "=?",
-            new String[] {user}, null, null, null, null);
-
-        res = cursor.moveToFirst();
-        return res;
-    }
+//    public boolean isRegistered(String user) {
+//        boolean res = false;
+//        SQLiteDatabase db = this.getReadableDatabase();
+//
+//        Cursor cursor = db.query(TABLE_USERS, new String[] {
+//            KEY_USER, KEY_PASS }, KEY_USER + "=?",
+//            new String[] {user}, null, null, null, null);
+//
+//        res = cursor.moveToFirst();
+//        return res;
+//    }
     /*
      *  Returns the all of users and passwords 
      *  registered with the app as a hashmap.
@@ -285,20 +312,20 @@ public class UserDBHandler extends SQLiteOpenHelper {
      *  @return a hashmap of users and their passwords
      *
      */
-    public HashMap<String, String> getAllUsers(){
-        HashMap<String, String> userList = new HashMap<String, String>();
-        String grabQuery = "SELECT * FROM " + TABLE_USERS;
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(grabQuery, null);
-
-        if(cursor.moveToFirst()) {
-            do {
-                userList.put(cursor.getString(0),cursor.getString(1));
-            } while(cursor.moveToNext());
-        }
-
-        return userList;
-    }
+//    public HashMap<String, String> getAllUsers(){
+//        HashMap<String, String> userList = new HashMap<String, String>();
+//        String grabQuery = "SELECT * FROM " + TABLE_USERS;
+//
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        Cursor cursor = db.rawQuery(grabQuery, null);
+//
+//        if(cursor.moveToFirst()) {
+//            do {
+//                userList.put(cursor.getString(0),cursor.getString(1));
+//            } while(cursor.moveToNext());
+//        }
+//
+//        return userList;
+//    }
 
 }

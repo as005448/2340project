@@ -8,6 +8,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.user.binarybeast.helper.Helper;
+
 
 public class HomePage extends Activity {
 

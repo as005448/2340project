@@ -18,7 +18,7 @@ import java.util.NoSuchElementException;
 
 
 public class login_activity extends Activity {
-    public static Helper helper = new Helper();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +43,7 @@ public class login_activity extends Activity {
 //            Toast.makeText(login_activity.this, "Username does not exist!", Toast.LENGTH_LONG).show();
 //        }
         try {
-            if (helper.login(username, password)) {
+            if (MainActivity.helper.login(username, password)) {
                 Intent intent = new Intent(this, MyMain.class);
                 startActivity(intent);
             } else {

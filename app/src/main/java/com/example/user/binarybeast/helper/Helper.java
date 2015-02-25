@@ -1,5 +1,6 @@
 package com.example.user.binarybeast.helper;
 
+import android.content.Context;
 import android.widget.Toast;
 
 import com.example.user.binarybeast.login_activity;
@@ -20,30 +21,37 @@ public class Helper {
     private List<UserData> userDatas;
     private List<FriendTable> friendTables;
     private UserData currUser;
-    public Helper() {
+    public Helper(Context context) {
 
-        this.dataBase = UserDBHandler.getInstance();
+//        this.dataBase = UserDBHandler.getInstance();
+        this.dataBase = new UserDBHandler(context);
         this.userDatas = dataBase.getAllUser();
         this.friendTables = dataBase.getFriendTable();
         defaultUser();
     }
     private void defaultUser() {
         if (!containUser("user")) {
-            dataBase.addUser("user", "pass", "user@gatech.edu", "user");
+            dataBase.addUser("user", "pass", "user", "user@gatech.edu");
         }
         userDatas = dataBase.getAllUser();
     }
-    public boolean containUser(String username) {
+    public boolean containUser(String information) {
         for (UserData user:userDatas) {
-            if (user.getUser() != null && user.getUser().equals(username)) {
+            if (user.getName() != null && user.getName().equals(information)) {
+                return true;
+            }
+            if (user.getEmail() != null && user.getEmail().equals(information)) {
+                return true;
+            }
+            if (user.getUser() != null && user.getUser().equals(information)) {
                 return true;
             }
         }
         return false;
     }
-    public UserData findUser(String information) {
+    public UserData findUser(String information) throws IllegalArgumentException, NoSuchElementException {
         if (information == null) {
-            throw new NoSuchElementException("User not Found.");
+            throw new IllegalArgumentException("information is null");
         }
         for (UserData user:userDatas) {
             if (user.getName() != null && user.getName().equals(information)) {
@@ -85,7 +93,10 @@ public class Helper {
         ArrayList<String> friendNames = new ArrayList<>();
         for (FriendTable friendRow:friendTables) {
             if (friendRow.getUserID() == (currUser.getId())) {
-                friendNames.add(getUser(friendRow.getFriendID()).getName());
+                try {
+                    friendNames.add(getUser(friendRow.getFriendID()).getName());
+                } catch (NoSuchElementException e) {
+                }
             }
         }
         return friendNames;
@@ -97,6 +108,12 @@ public class Helper {
             }
         }
         throw new NoSuchElementException("User does not exist.");
+    }
+    public void deleteFriend(UserData friend) {
+        int userID = currUser.getId();
+        int friendID = friend.getId();
+        dataBase.deleteFriend(userID, friendID);
+        friendTables = dataBase.getFriendTable();
     }
     private void check() {
         System.out.println(userDatas);

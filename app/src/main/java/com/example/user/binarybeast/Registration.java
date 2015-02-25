@@ -62,11 +62,11 @@ public class Registration extends Activity {
         String email = emailEntry.getText().toString();
         if (vPassword.equals(password)) {
             try {
-                UserData user = login_activity.helper.findUser(username);
+                UserData user = MainActivity.helper.findUser(username);
                 Toast.makeText(Registration.this, "The username has been used", Toast.LENGTH_LONG).show();
 
             } catch (NoSuchElementException e) {
-                login_activity.helper.addUser(username, password, name, email);
+                MainActivity.helper.addUser(username, password, name, email);
                 Toast.makeText(Registration.this, "You made it!", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);

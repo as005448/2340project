@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -186,7 +187,7 @@ public class MyMain extends Activity implements View.OnClickListener {
         mySettingImg.setImageResource(R.drawable.barbuttonicon_set_dis);
     }
     private void initTab2(View view) {
-        ArrayList<String> Friends = login_activity.helper.getFriendName();
+        ArrayList<String> Friends = MainActivity.helper.getFriendName();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, Friends);
         ListView friendList = (ListView) view.findViewById(R.id.tab2_listView);

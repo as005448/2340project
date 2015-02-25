@@ -14,16 +14,18 @@ import com.example.user.binarybeast.helper.UserDBHandler;
  *
  */
 public class UserData {
-    private HashMap<String, String> account;
-    public UserDBHandler dbhandler;
+//    private HashMap<String, String> account;
+//    public UserDBHandler dbhandler;
     private String currentUser;
-    public HashMap<String, Friend> friends;
+//    public HashMap<String, Friend> friends;
 
     private int id;
     private String user;
     private String pass;
     private String name;
     private String email;
+    private int rate;
+    private int post;
     public UserData(String user, String pass, String name, String email) {
         this.user = user;
         this.pass = pass;
@@ -49,6 +51,22 @@ public class UserData {
 
     public String getEmail() {
         return email;
+    }
+
+    public int getPost() {
+        return post;
+    }
+
+    public int getRate() {
+        return rate;
+    }
+
+    public void setRate(int rate) {
+        this.rate = rate;
+    }
+
+    public void setPost(int post) {
+        this.post = post;
     }
 
     public void setId(int id) {
@@ -77,15 +95,15 @@ public class UserData {
              */
     public UserData() {
         //this.account = new HashMap<String, String>();
-        this.dbhandler = UserDBHandler.getInstance();
-        this.account = dbhandler.getAllUsers();
-        this.friends = new HashMap<>();
-        account.put("user","pass");
-        Set<String> names = account.keySet();
-        Friend temp = new Friend("temp", "temp@willchange");
-        for(String s : names) {
-            friends.put(s, temp);
-        }
+//        this.dbhandler = UserDBHandler.getInstance();
+//        this.account = dbhandler.getAllUsers();
+//        this.friends = new HashMap<>();
+//        account.put("user","pass");
+//        Set<String> names = account.keySet();
+//        Friend temp = new Friend("temp", "temp@willchange");
+//        for(String s : names) {
+//            friends.put(s, temp);
+//        }
     }
 
     /*
@@ -95,11 +113,11 @@ public class UserData {
      *  @param password the password of the user
      *
      */
-    public void addAccount(String username, String password) {
-        account.put(username, password);
-        dbhandler.addUser(username, password);
-        
-    }
+//    public void addAccount(String username, String password) {
+//        account.put(username, password);
+//        dbhandler.addUser(username, password);
+//
+//    }
 
     /*
      *  Checks to see if the user is registered.
@@ -108,9 +126,9 @@ public class UserData {
      *  @return whether of not the user is registered
      *
      */
-    public boolean existAccount(String username) {
-        return account.containsKey(username);
-    }
+//    public boolean existAccount(String username) {
+//        return account.containsKey(username);
+////    }
     
     /*
      * Authenticates the user information provided.
@@ -121,9 +139,9 @@ public class UserData {
      * account.
      *
      */
-    public boolean verifyAccount(String username, String password) {
-        return account.get(username).equals(password);
-    }
+//    public boolean verifyAccount(String username, String password) {
+//        return account.get(username).equals(password);
+//    }
 
 
     /**
@@ -132,11 +150,11 @@ public class UserData {
      *
      * @return a set of friend names to the user.
      */
-    public Set<String> getUserList() {
-        Set<String> set2 = friends.keySet();
-
-        return set2;
-    }
+//    public Set<String> getUserList() {
+//        Set<String> set2 = friends.keySet();
+//
+//        return set2;
+//    }
 
     /**
      * Sets the current user on login.
@@ -157,10 +175,10 @@ public class UserData {
         return currentUser;
     }
 
-    public void addFriend(String user, String email) {
-        Friend newFriendPerson = new Friend(user, email);
-        friends.put(user, newFriendPerson);
-    }
+//    public void addFriend(String user, String email) {
+//        Friend newFriendPerson = new Friend(user, email);
+//        friends.put(user, newFriendPerson);
+//    }
 
     @Override
     public String toString() {
