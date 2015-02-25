@@ -46,6 +46,7 @@ public class HubActivity extends ActionBarActivity implements ActionBar.TabListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hub);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();
@@ -193,18 +194,20 @@ public class HubActivity extends ActionBarActivity implements ActionBar.TabListe
             Bundle args = getArguments();
             int sectionNum = args.getInt("section_number");
             if(sectionNum != 2) {
-                Button addFriend = (Button) rootView.findViewById(R.id.add_friend_b);
-                addFriend.setVisibility(View.GONE);
+                Button button = (Button) rootView.findViewById(R.id.add_friend_b);
+
                 ListView notFriendList = (ListView) rootView.findViewById(R.id.listView);
                 LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) notFriendList.getLayoutParams();
                 params.weight = 1.0f;
                 notFriendList.setLayoutParams(params);
                 if(sectionNum == 1) {
+                    button.setVisibility(View.GONE);
                     String[] items = { "Android Phones", "Textbooks", "Valentines Candy", "Running Shoes", "Random item"};
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_list_item_1, items);
                     notFriendList.setAdapter(adapter);
                 } else {
+                    button.setVisibility(View.GONE);
                     String[] items = { "Settings Item 1", "Settings Item 2", "Settings Item 3", "Settings Item 4", "Settings Item 5"};
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_list_item_1, items);
@@ -222,6 +225,7 @@ public class HubActivity extends ActionBarActivity implements ActionBar.TabListe
 
                 ListView FriendList = (ListView) rootView.findViewById(R.id.listView);
                 FriendList.setAdapter(adapter);
+
 
             }
             return rootView;

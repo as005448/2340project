@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="55dp"
+    android:background="@drawable/title_bar"
+    android:orientation="horizontal"
+    >
+
+<LinearLayout
+    android:id="@+id/id_tab_sales"
+    android:layout_width="0dp"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:layout_weight="1">
+
+    <ImageButton
+        android:id="@+id/id_tab_sales_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:src="@drawable/barbuttonicon_camera_hl"
+        android:background="#00000000"
+
+        />
+    <TextView
+        android:text = "Shop With Friends"
+        android:textColor="#ffffff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/id_tab_friends"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <ImageButton
+            android:id="@+id/id_tab_friends_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:src="@drawable/contacts_add_friend_hl"
+            android:background="#00000000"
+
+            />
+        <TextView
+            android:text = "Shop With Friends"
+            android:textColor="#ffffff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/id_tab_setting"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <ImageButton
+            android:id="@+id/id_tab_setting_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:src="@drawable/barbuttonicon_set_hl"
+            android:background="#00000000"
+
+            />
+        <TextView
+            android:text = "Shop With Friends"
+            android:textColor="#ffffff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

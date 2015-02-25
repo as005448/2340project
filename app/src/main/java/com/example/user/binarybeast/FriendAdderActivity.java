@@ -54,7 +54,7 @@ public class FriendAdderActivity extends ActionBarActivity {
         try {
             login_activity.helper.addFriend(name, email);
             Toast.makeText(FriendAdderActivity.this, "Friend Added.", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(this, HubActivity.class);
+            Intent intent = new Intent(this, MyMain.class);
             startActivity(intent);
         } catch (NoSuchElementException e) {
             Toast.makeText(FriendAdderActivity.this, "User does not exist", Toast.LENGTH_LONG).show();

@@ -44,7 +44,7 @@ public class login_activity extends Activity {
 //        }
         try {
             if (helper.login(username, password)) {
-                Intent intent = new Intent(this, HubActivity.class);
+                Intent intent = new Intent(this, MyMain.class);
                 startActivity(intent);
             } else {
                 Toast.makeText(login_activity.this, "Password does not match.", Toast.LENGTH_LONG).show();

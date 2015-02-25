@@ -67,8 +67,8 @@ public class Helper {
             return false;
          }
     }
-    public void addUser(String username, String pass, String email, String name) {
-        dataBase.addUser(username, pass, email, name);
+    public void addUser(String username, String pass, String name, String email) {
+        dataBase.addUser(username, pass, name, email);
         userDatas = dataBase.getAllUser();
     }
     public void addFriend(String name, String email) throws NoSuchElementException {

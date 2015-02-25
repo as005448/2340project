@@ -132,7 +132,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
         db.insert(TABLE_USERS, null, values);
         db.close();
     }
-    public long addUser(String user, String pass, String email, String name) {
+    public long addUser(String user, String pass, String name, String email) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_USER, user);

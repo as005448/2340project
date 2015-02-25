@@ -50,7 +50,8 @@
         <activity
             android:name=".HubActivity"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
-            android:label="@string/title_activity_hub" >
+            android:label="@string/title_activity_hub"
+            android:parentActivityName=".login_activity">
             <meta-data android:name="android.support.UI_OPTIONS"
                 android:value="splitActionBarWhenNarrow" />
         </activity>
@@ -58,6 +59,10 @@
             android:name=".FriendAdderActivity"
             android:label="Search Friend"
             android:parentActivityName=".HubActivity">
+        </activity>
+        <activity
+            android:name=".MyMain"
+            android:label="MyMain" >
         </activity>
     </application>
 
