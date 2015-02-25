@@ -1,6 +1,5 @@
 package com.example.user.binarybeast.helper;
 
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.Cursor;
@@ -8,12 +7,10 @@ import android.content.Context;
 import android.content.ContentValues;
 import android.util.Log;
 
-import com.example.user.binarybeast.MainActivity;
 import com.example.user.binarybeast.model.FriendTable;
 import com.example.user.binarybeast.model.UserData;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 

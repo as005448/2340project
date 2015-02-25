@@ -20,7 +20,7 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
         <activity
-            android:name=".MainActivity"
+            android:name=".view.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,7 +36,7 @@
 
 
         <activity
-            android:name=".login_activity"
+            android:name=".view.login_activity"
             android:label="@string/title_activity_login_activity" >
         </activity>
         <activity
@@ -44,24 +44,24 @@
             android:label="@string/title_activity_home_page" >
         </activity>
         <activity
-            android:name=".Registration"
+            android:name=".view.Registration"
             android:label="@string/title_activity_registration" >
         </activity>
         <activity
             android:name=".HubActivity"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
             android:label="@string/title_activity_hub"
-            android:parentActivityName=".login_activity">
+            android:parentActivityName=".view.login_activity">
             <meta-data android:name="android.support.UI_OPTIONS"
                 android:value="splitActionBarWhenNarrow" />
         </activity>
         <activity
-            android:name=".FriendAdderActivity"
+            android:name=".view.FriendAdderActivity"
             android:label="Search Friend"
-            android:parentActivityName=".MyMain">
+            android:parentActivityName=".view.MyMain">
         </activity>
         <activity
-            android:name=".MyMain"
+            android:name=".view.MyMain"
             android:theme="@style/Theme.AppCompat.Light"
             android:label="MyMain" >
             <meta-data android:name="android.support.UI_OPTIONS"
@@ -70,7 +70,7 @@
         <activity
             android:name=".view.FriendDetail_activity"
             android:label="Friend Detail"
-            android:parentActivityName=".MyMain">
+            android:parentActivityName=".view.MyMain">
         </activity>
     </application>
 

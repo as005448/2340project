@@ -8,10 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.user.binarybeast.MainActivity;
-import com.example.user.binarybeast.MyMain;
 import com.example.user.binarybeast.R;
-import com.example.user.binarybeast.login_activity;
 import com.example.user.binarybeast.model.UserData;
 
 /**

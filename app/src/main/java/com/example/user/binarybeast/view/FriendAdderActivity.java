@@ -1,4 +1,4 @@
-package com.example.user.binarybeast;
+package com.example.user.binarybeast.view;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.user.binarybeast.R;
 
 import java.util.NoSuchElementException;
 

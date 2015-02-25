@@ -1,14 +1,10 @@
 package com.example.user.binarybeast.helper;
 
 import android.content.Context;
-import android.widget.Toast;
 
-import com.example.user.binarybeast.login_activity;
-import com.example.user.binarybeast.model.Friend;
 import com.example.user.binarybeast.model.FriendTable;
 import com.example.user.binarybeast.model.UserData;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;

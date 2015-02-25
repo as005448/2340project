@@ -12,7 +12,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,7 +21,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import java.util.Set;
+
+import com.example.user.binarybeast.view.FriendAdderActivity;
+import com.example.user.binarybeast.view.MainActivity;
 
 
 public class HubActivity extends ActionBarActivity implements ActionBar.TabListener {

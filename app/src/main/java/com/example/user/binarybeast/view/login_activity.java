@@ -1,19 +1,14 @@
-package com.example.user.binarybeast;
+package com.example.user.binarybeast.view;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.user.binarybeast.helper.Helper;
-import com.example.user.binarybeast.model.UserData;
+import com.example.user.binarybeast.R;
 
-import java.util.HashMap;
 import java.util.NoSuchElementException;
 
 
