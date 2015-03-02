@@ -46,10 +46,22 @@ public class Registration extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+    /*
+     *  Cancel registration and return to welcome page
+     *
+     *  @param view the view of current activity
+     *
+     */
     public void rCancel(View view){
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
     }
+    /*
+     *  submit registration information
+     *
+     *  @param view the view of current activity
+     *
+     */
     public void submit(View view){
         EditText usernameEntry = (EditText) findViewById(R.id.r_userName);
         EditText passwordEntry = (EditText) findViewById(R.id.r_passWord);
@@ -61,19 +73,21 @@ public class Registration extends Activity {
         String vPassword = vPasswordEntry.getText().toString();
         String name = nameEntry.getText().toString();
         String email = emailEntry.getText().toString();
-        if (vPassword.equals(password)) {
-            try {
-                UserData user = MainActivity.helper.findUser(username);
-                Toast.makeText(Registration.this, "The username has been used", Toast.LENGTH_LONG).show();
-
-            } catch (NoSuchElementException e) {
-                MainActivity.helper.addUser(username, password, name, email);
-                Toast.makeText(Registration.this, "You made it!", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
-            }
+        if (username.equals("") || password.equals("") || name.equals("") || email.equals("")) {
+            Toast.makeText(Registration.this, "Please fill out all information", Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(Registration.this,"Password does not match.", Toast.LENGTH_LONG).show();
+            if (vPassword.equals(password)) {
+                if (MainActivity.helper.findUser(username, "user") != null) {
+                    Toast.makeText(Registration.this, "The username has been used", Toast.LENGTH_LONG).show();
+                } else {
+                    MainActivity.helper.addUser(username, password, name, email);
+                    Toast.makeText(Registration.this, "You made it!", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(this, MainActivity.class);
+                    startActivity(intent);
+                }
+            } else {
+                Toast.makeText(Registration.this, "Password does not match.", Toast.LENGTH_LONG).show();
+            }
         }
     }
 }

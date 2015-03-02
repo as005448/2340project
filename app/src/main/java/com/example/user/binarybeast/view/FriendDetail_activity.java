@@ -37,7 +37,7 @@ public class FriendDetail_activity extends ActionBarActivity {
         textRate = (TextView) findViewById(R.id.textView_disRate);
         textPost = (TextView) findViewById(R.id.textView_disReport);
 
-        friend = MainActivity.helper.findUser(name);
+        friend = MainActivity.helper.findUser(name, "name");
         String rate = " " + friend.getRate();
         String post = " " + friend.getPost();
         textName.setText(name.toCharArray(), 0, name.length());

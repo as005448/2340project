@@ -22,6 +22,7 @@ public class Helper {
 
 //        this.dataBase = UserDBHandler.getInstance();
         this.dataBase = new UserDBHandler(context);
+//        databaseUpgrade();
         this.userDatas = dataBase.getAllUser();
         this.friendTables = dataBase.getFriendTable();
         defaultUser();
@@ -30,44 +31,26 @@ public class Helper {
         dataBase.onUpgrade(dataBase.getWritableDatabase(), 3, 4);
     }
     private void defaultUser() {
-        if (!containUser("user")) {
+        if (findUser("user", "user") == null) {
             dataBase.addUser("user", "pass", "user", "user@gatech.edu");
         }
         userDatas = dataBase.getAllUser();
     }
-    public boolean containUser(String information) {
-        for (UserData user:userDatas) {
-            if (user.getName() != null && user.getName().equals(information)) {
-                return true;
-            }
-            if (user.getEmail() != null && user.getEmail().equals(information)) {
-                return true;
-            }
-            if (user.getUser() != null && user.getUser().equals(information)) {
-                return true;
-            }
-        }
-        return false;
-    }
-    public UserData findUser(String information) throws IllegalArgumentException, NoSuchElementException {
+
+    public UserData findUser(String information, String type) {
         if (information == null) {
             throw new IllegalArgumentException("information is null");
         }
-        for (UserData user:userDatas) {
-            if (user.getName() != null && user.getName().equals(information)) {
-                    return user;
-            }
-            if (user.getEmail() != null && user.getEmail().equals(information)) {
-                return user;
-            }
-            if (user.getUser() != null && user.getUser().equals(information)) {
-                return user;
-            }
+        if (information == null) {
+            throw new IllegalArgumentException("type is null");
         }
-        throw new NoSuchElementException("User not Found.");
+        return dataBase.getUser(information, type);
     }
-    public boolean login(String user, String pass) throws NoSuchElementException {
-         UserData userdata = findUser(user);
+    public boolean login(String user, String pass) {
+         UserData userdata = findUser(user, "user");
+         if (userdata == null) {
+             throw new NoSuchElementException("can not find the username");
+         }
          if (userdata.getPass().equals(pass)) {
              currUser = userdata;
              return true;
@@ -77,17 +60,20 @@ public class Helper {
     }
     public void addUser(String username, String pass, String name, String email) {
         dataBase.addUser(username, pass, name, email);
-        userDatas = dataBase.getAllUser();
+//        userDatas = dataBase.getAllUser();
     }
-    public void addFriend(String name, String email) throws NoSuchElementException {
+    public boolean addFriend(String name, String email) {
         UserData user;
-        try {
-            user = findUser(name);
-        } catch (NoSuchElementException e) {
-            user = findUser(email);
+        if (findUser(name, "name") != null) {
+            user = findUser(name, "name");
+        } else if (findUser(email, "email") != null) {
+            user = findUser(email, "email");
+        } else {
+            return false;
         }
         dataBase.addFriend(currUser.getId(), user.getId());
         friendTables = dataBase.getFriendTable();
+        return true;
     }
     public ArrayList<String> getFriendName() {
         ArrayList<String> friendNames = new ArrayList<>();

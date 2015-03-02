@@ -159,6 +159,35 @@ public class UserDBHandler extends SQLiteOpenHelper {
         db.close();
         return userID;
     }
+    public UserData getUser(String information, String type) {
+        String selectQuery;
+        if (type.equals("name")) {
+            selectQuery = "SELECT  * FROM " + TABLE_USERS + " WHERE "
+                    + KEY_NAME + " = '" + information + "';";
+        } else if (type.equals("email")) {
+            selectQuery = "SELECT  * FROM " + TABLE_USERS + " WHERE "
+                    + KEY_EMAIL + " = '" + information + "';";
+        }else if (type.equals("user")) {
+            selectQuery = "SELECT  * FROM " + TABLE_USERS + " WHERE "
+                    + KEY_USER + " = '" + information + "';";
+        } else {
+            throw new IllegalArgumentException("type is illegal");
+        }
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+        if (c.moveToFirst() == false) {
+            db.close();
+            return null;
+        }
+        UserData user = new UserData();
+        user.setId(c.getInt((c.getColumnIndex(KEY_ID))));
+        user.setUser((c.getString(c.getColumnIndex(KEY_USER))));
+        user.setPass(c.getString(c.getColumnIndex(KEY_PASS)));
+        user.setName(c.getString(c.getColumnIndex(KEY_NAME)));
+        user.setEmail(c.getString(c.getColumnIndex(KEY_EMAIL)));
+        db.close();
+        return user;
+    }
     public UserData getUser(long user_id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
