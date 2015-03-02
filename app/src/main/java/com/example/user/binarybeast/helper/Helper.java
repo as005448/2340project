@@ -3,6 +3,7 @@ package com.example.user.binarybeast.helper;
 import android.content.Context;
 
 import com.example.user.binarybeast.model.FriendTable;
+import com.example.user.binarybeast.model.Interest;
 import com.example.user.binarybeast.model.UserData;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class Helper {
     private UserDBHandler dataBase;
     private List<UserData> userDatas;
     private List<FriendTable> friendTables;
-    private UserData currUser;
+    public UserData currUser;
     public Helper(Context context) {
 
 //        this.dataBase = UserDBHandler.getInstance();
@@ -24,6 +25,9 @@ public class Helper {
         this.userDatas = dataBase.getAllUser();
         this.friendTables = dataBase.getFriendTable();
         defaultUser();
+    }
+    public void databaseUpgrade() {
+        dataBase.onUpgrade(dataBase.getWritableDatabase(), 3, 4);
     }
     private void defaultUser() {
         if (!containUser("user")) {
@@ -113,5 +117,19 @@ public class Helper {
     }
     private void check() {
         System.out.println(userDatas);
+    }
+
+    public boolean addInterest(String name, String category, String price) {
+        dataBase.addInterest(name, category, price, currUser.getId());
+        return true;
+    }
+
+    public void signOut() {
+        currUser = null;
+    }
+
+    public List<Interest> getInterestListByOwner(int id) {
+        List<Interest> interestList = new ArrayList<>(dataBase.findInterestByOwner(id));
+        return interestList;
     }
 }

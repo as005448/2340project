@@ -5,6 +5,14 @@
     android:orientation="vertical">
 
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:id="@+id/button_add"
+        android:layout_gravity="center_horizontal"
+        android:onClick="AddOnClick"/>
+
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

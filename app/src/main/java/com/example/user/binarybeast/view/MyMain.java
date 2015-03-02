@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.user.binarybeast.R;
+import com.example.user.binarybeast.model.Interest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -98,9 +99,11 @@ public class MyMain extends Activity implements View.OnClickListener {
 
         LayoutInflater myInflater = LayoutInflater.from(this);
         View tab01 = myInflater.inflate(R.layout.tab01, null);
+        initTab1(tab01);
         View tab02 = myInflater.inflate(R.layout.tab02, null);
         initTab2(tab02);
         View tab03 = myInflater.inflate(R.layout.tab03, null);
+        initTab3(tab03);
 
         myViews.add(tab01);
         myViews.add(tab02);
@@ -184,6 +187,9 @@ public class MyMain extends Activity implements View.OnClickListener {
         myFriendsImg.setImageResource(R.drawable.contacts_add_friend_dis);
         mySettingImg.setImageResource(R.drawable.barbuttonicon_set_dis);
     }
+    private void initTab1(View view) {
+
+    }
     private void initTab2(View view) {
         ArrayList<String> Friends = MainActivity.helper.getFriendName();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -201,11 +207,31 @@ public class MyMain extends Activity implements View.OnClickListener {
             }
         });
     }
+
+    private void initTab3(View view) {
+
+    }
     private MyMain getInstance() {
         return this;
     }
+    //tab1 button onclick
+    public void AddOnClick(View view) {
+        Intent intent = new Intent(this, InterestAddActivity.class);
+        startActivity(intent);
+    }
+    //tab02 button onclick
     public void AddFriend(View view) {
         Intent intent = new Intent(this, FriendAdderActivity.class);
+        startActivity(intent);
+    }
+    //tab03 button onclick
+    public void interestList(View view) {
+        Intent intent = new Intent(this, InterestListActivity.class);
+        startActivity(intent);
+    }
+    public void signOut(View view) {
+        MainActivity.helper.signOut();
+        Intent intent = new Intent(this, login_activity.class);
         startActivity(intent);
     }
 }

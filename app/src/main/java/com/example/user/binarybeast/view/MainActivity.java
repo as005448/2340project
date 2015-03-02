@@ -29,9 +29,9 @@ public class MainActivity extends Activity {
         if (helper == null) {
             helper = new Helper(getApplicationContext());
         }
-        if(UserDBHandler.ctx == null){
-            UserDBHandler.ctx = this;
-        }
+//        if(UserDBHandler.ctx == null){
+//            UserDBHandler.ctx = this;
+//        }
     }
 
 

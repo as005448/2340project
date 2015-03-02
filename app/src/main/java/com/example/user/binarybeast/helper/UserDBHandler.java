@@ -8,6 +8,7 @@ import android.content.ContentValues;
 import android.util.Log;
 
 import com.example.user.binarybeast.model.FriendTable;
+import com.example.user.binarybeast.model.Interest;
 import com.example.user.binarybeast.model.UserData;
 
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
     //table name
     private static final String TABLE_USERS = "users";
     private static final String TABLE_FRIEND = "friend";
+    private static final String TABLE_INTEREST = "interest";
 
     // table users column names
     private static final String KEY_ID = "id";
@@ -44,10 +46,16 @@ public class UserDBHandler extends SQLiteOpenHelper {
     private static final String KEY_USER_ID = "user_id";
     private static final String KEY_FRIEND_ID = "friend_id";
     private static final String KEY_FRIEND_POST = "friend_post";
+
+    //table interest column names
+    private static final String KEY_INTEREST_NAME = "name";
+    private static final String KEY_INTEREST_CATEGORY = "category";
+    private static final String KEY_INTEREST_PRICE = "price";
+    private static final String KEY_INTEREST_OWNER = "owner";
+
+//    private static UserDBHandler instance = null;
     
-    private static UserDBHandler instance = null;
-    
-    public static Context ctx = null;
+//    public static Context ctx = null;
     /*
      * Constructor for the database handler.
      *
@@ -87,8 +95,13 @@ public class UserDBHandler extends SQLiteOpenHelper {
                 + TABLE_FRIEND + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_USER_ID
                 + " INTEGER," + KEY_FRIEND_ID + " INTEGER," + KEY_FRIEND_POST
                 + " INTEGER" + ")";
+        String CREATE_TABLE_INTEREST = "CREATE TABLE "
+                + TABLE_INTEREST + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_INTEREST_NAME
+                + " TEXT," + KEY_INTEREST_CATEGORY + " TEXT," + KEY_INTEREST_PRICE
+                + " INTEGER, " + KEY_INTEREST_OWNER + " INTEGER" + ")";
         db.execSQL(CREATE_TABLE_USERS);
         db.execSQL(CREATE_TABLE_FRIEND);
+        db.execSQL(CREATE_TABLE_INTEREST);
     }
     
     /*
@@ -105,6 +118,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
         //Drop table if it exists
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_FRIEND);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_INTEREST);
 
         //make new table
         onCreate(db);
@@ -132,7 +146,6 @@ public class UserDBHandler extends SQLiteOpenHelper {
 //        db.close();
 //    }
     public long addUser(String user, String pass, String name, String email) {
-        Log.e(LOG,  "" + (this == null));
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_USER, user);
@@ -273,6 +286,58 @@ public class UserDBHandler extends SQLiteOpenHelper {
                     new String[]{String.valueOf(i)});
         }
         db.close();
+    }
+
+    public long addInterest(String name, String category, String price, int owner) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_INTEREST_NAME, name);
+        values.put(KEY_INTEREST_CATEGORY, category);
+        values.put(KEY_INTEREST_PRICE, price);
+        values.put(KEY_INTEREST_OWNER, owner);
+
+        long interestID = db.insert(TABLE_INTEREST, null, values);
+        db.close();
+        return interestID;
+    }
+
+    public List<Interest> findInterestByName(String name) {
+        List<Interest> interests = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "SELECT * FROM " + TABLE_INTEREST + " WHERE "
+                + KEY_INTEREST_NAME + " = '" + name + "';";
+        Log.e(LOG, selectQuery);
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                String category = cursor.getString(cursor.getColumnIndex(KEY_INTEREST_CATEGORY));
+                int price = cursor.getInt(cursor.getColumnIndex(KEY_INTEREST_PRICE));
+                int owner = cursor.getInt(cursor.getColumnIndex(KEY_INTEREST_OWNER));
+                Interest interest = new Interest(name, category, price, owner);
+                interests.add(interest);
+            } while (cursor.moveToNext());
+        }
+        db.close();
+        return interests;
+    }
+    public List<Interest> findInterestByOwner(int id) {
+        List<Interest> interests = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "SELECT * FROM " + TABLE_INTEREST + " WHERE "
+                + KEY_INTEREST_OWNER + " = " + id + ";";
+        Log.e(LOG, selectQuery);
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                String name = cursor.getString(cursor.getColumnIndex(KEY_INTEREST_NAME));
+                String category = cursor.getString(cursor.getColumnIndex(KEY_INTEREST_CATEGORY));
+                int price = cursor.getInt(cursor.getColumnIndex(KEY_INTEREST_PRICE));
+                Interest interest = new Interest(name, category, price, id);
+                interests.add(interest);
+            } while (cursor.moveToNext());
+        }
+        db.close();
+        return interests;
     }
 //    public void deleteFriend(long friend_id) {
 //        SQLiteDatabase db = this.getWritableDatabase();

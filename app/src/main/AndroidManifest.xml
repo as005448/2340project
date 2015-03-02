@@ -14,11 +14,11 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
-        android:uiOptions="splitActionBarWhenNarrow"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+        android:uiOptions="splitActionBarWhenNarrow" >
         <activity
             android:name=".view.MainActivity"
             android:label="@string/app_name" >
@@ -29,11 +29,9 @@
             </intent-filter>
         </activity>
 
-
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
 
         <activity
             android:name=".view.login_activity"
@@ -49,28 +47,46 @@
         </activity>
         <activity
             android:name=".HubActivity"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
             android:label="@string/title_activity_hub"
-            android:parentActivityName=".view.login_activity">
-            <meta-data android:name="android.support.UI_OPTIONS"
+            android:parentActivityName=".view.login_activity"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+            <meta-data
+                android:name="android.support.UI_OPTIONS"
                 android:value="splitActionBarWhenNarrow" />
         </activity>
         <activity
             android:name=".view.FriendAdderActivity"
             android:label="Search Friend"
-            android:parentActivityName=".view.MyMain">
+            android:parentActivityName=".view.MyMain" >
         </activity>
         <activity
             android:name=".view.MyMain"
-            android:theme="@style/Theme.AppCompat.Light"
-            android:label="MyMain" >
-            <meta-data android:name="android.support.UI_OPTIONS"
+            android:label="MyMain"
+            android:theme="@style/Theme.AppCompat.Light" >
+            <meta-data
+                android:name="android.support.UI_OPTIONS"
                 android:value="splitActionBarWhenNarrow" />
         </activity>
         <activity
             android:name=".view.FriendDetail_activity"
             android:label="Friend Detail"
-            android:parentActivityName=".view.MyMain">
+            android:parentActivityName=".view.MyMain" >
+        </activity>
+        <activity
+            android:name=".view.InterestAddActivity"
+            android:label="@string/title_activity_interest_add"
+            android:parentActivityName=".view.MyMain" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.user.binarybeast.view.MyMain" />
+        </activity>
+        <activity
+            android:name=".view.InterestListActivity"
+            android:label="@string/title_activity_interest_list"
+            android:parentActivityName=".view.MyMain" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.user.binarybeast.view.MyMain" />
         </activity>
     </application>
 
