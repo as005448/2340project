@@ -10,10 +10,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.user.binarybeast.R;
+import com.example.user.binarybeast.model.UserData;
 
 import java.util.NoSuchElementException;
-
-
+/**
+ * @author Yan Chen
+ * @version 1.0
+ */
 public class FriendAdderActivity extends ActionBarActivity {
 
     @Override
@@ -45,21 +48,37 @@ public class FriendAdderActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
-
+    /**
+     * add new friend
+     * @param view current view
+     */
     public void makeNewFriend(View view) {
         EditText friendName = (EditText) findViewById(R.id.r_friendName);
         EditText friendEmail = (EditText) findViewById(R.id.r_friendEmail);
         String name = friendName.getText().toString();
         String email = friendEmail.getText().toString();
-        try {
-            MainActivity.helper.addFriend(name, email);
-            Toast.makeText(FriendAdderActivity.this, "Friend Added.", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(this, MyMain.class);
-            startActivity(intent);
-        } catch (NoSuchElementException e) {
-            Toast.makeText(FriendAdderActivity.this, "User does not exist", Toast.LENGTH_LONG).show();
+        UserData addFriendName = MainActivity.helper.findUser(name, "name");
+        UserData addFriendEmail = MainActivity.helper.findUser(email, "email");
+        //add new friend
+        if (MainActivity.helper.currUser.getEmail().equals(email) || MainActivity.helper.currUser.getName().equals(name)) {
+            //can not add yourself as friend
+            Toast.makeText(FriendAdderActivity.this, "Don't add yourself!", Toast.LENGTH_LONG).show();
+        } else if (addFriendName != null) {
+            //add friend by name
+            if (!MainActivity.helper.addFriend(addFriendName)) {
+                Toast.makeText(FriendAdderActivity.this, "the user is already your friend.", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(FriendAdderActivity.this, "Friend added", Toast.LENGTH_LONG).show();
+            }
+        } else if (addFriendEmail != null) {
+            //add friend by email
+            if (!MainActivity.helper.addFriend(addFriendEmail)) {
+                Toast.makeText(FriendAdderActivity.this, "the user is already your friend.", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(FriendAdderActivity.this, "Friend added", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(FriendAdderActivity.this, "Can not find the user", Toast.LENGTH_LONG).show();
         }
     }
 }

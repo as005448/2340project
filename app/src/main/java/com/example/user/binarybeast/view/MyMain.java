@@ -22,7 +22,12 @@ import com.example.user.binarybeast.model.Interest;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Created by Yan on 2015/2/24.
+ * @author yupeng fan
+ * @author Yan Chen
+ * @version 1.0
+ */
 
 public class MyMain extends Activity implements View.OnClickListener {
     private ViewPager myViewPager;
@@ -50,7 +55,9 @@ public class MyMain extends Activity implements View.OnClickListener {
 
         initEvents();
     }
-
+    /**
+     * initialize all events
+     */
     private void initEvents() {
         myTabSales.setOnClickListener(this);
         myTabFriends.setOnClickListener(this);
@@ -85,7 +92,9 @@ public class MyMain extends Activity implements View.OnClickListener {
             }
         });
     }
-
+    /**
+     * initialize all views
+     */
     private void initView(){
         myViewPager = (ViewPager)findViewById(R.id.id_viewpager);
         //TAB
@@ -99,11 +108,9 @@ public class MyMain extends Activity implements View.OnClickListener {
 
         LayoutInflater myInflater = LayoutInflater.from(this);
         View tab01 = myInflater.inflate(R.layout.tab01, null);
-        initTab1(tab01);
         View tab02 = myInflater.inflate(R.layout.tab02, null);
         initTab2(tab02);
         View tab03 = myInflater.inflate(R.layout.tab03, null);
-        initTab3(tab03);
 
         myViews.add(tab01);
         myViews.add(tab02);
@@ -181,21 +188,25 @@ public class MyMain extends Activity implements View.OnClickListener {
                 break;
         }
     }
-
+    /**
+     * reset button images
+     */
     private void resetImg() {
         mySalesImg.setImageResource(R.drawable.barbuttonicon_camera_disable);
         myFriendsImg.setImageResource(R.drawable.contacts_add_friend_dis);
         mySettingImg.setImageResource(R.drawable.barbuttonicon_set_dis);
     }
-    private void initTab1(View view) {
-
-    }
+    /**
+     * initialize friend list
+     */
     private void initTab2(View view) {
-        ArrayList<String> Friends = MainActivity.helper.getFriendName();
+        List<String> Friends = MainActivity.helper.getFriendName();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, Friends);
         ListView friendList = (ListView) view.findViewById(R.id.tab2_listView);
+        //set adapter
         friendList.setAdapter(adapter);
+        //set on click listener
         friendList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -208,27 +219,44 @@ public class MyMain extends Activity implements View.OnClickListener {
         });
     }
 
-    private void initTab3(View view) {
-
-    }
+    /**
+     * get instance of current mymain activity
+     */
     private MyMain getInstance() {
         return this;
     }
-    //tab1 button onclick
+
+    /**
+     * jump to add interest page
+     * @param view current view
+     */
     public void AddOnClick(View view) {
         Intent intent = new Intent(this, InterestAddActivity.class);
         startActivity(intent);
     }
-    //tab02 button onclick
+
+    /**
+     * jump to add friend page
+     * @param view current view
+     */
     public void AddFriend(View view) {
         Intent intent = new Intent(this, FriendAdderActivity.class);
         startActivity(intent);
     }
-    //tab03 button onclick
+
+    /**
+     * jump to interest list page
+     * @param view current view
+     */
     public void interestList(View view) {
         Intent intent = new Intent(this, InterestListActivity.class);
         startActivity(intent);
     }
+
+    /**
+     * sign out and jump to login page
+     * @param view current view
+     */
     public void signOut(View view) {
         MainActivity.helper.signOut();
         Intent intent = new Intent(this, login_activity.class);

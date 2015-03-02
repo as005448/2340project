@@ -12,6 +12,10 @@ import com.example.user.binarybeast.R;
 import com.example.user.binarybeast.helper.Helper;
 import com.example.user.binarybeast.helper.UserDBHandler;
 
+/**
+ * @author Yan Chen
+ * @version 1.0
+ */
 
 public class MainActivity extends Activity {
     public static Helper helper;
@@ -57,12 +61,16 @@ public class MainActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-
+    /**
+     * jump to login page
+     */
     public void loginPage(){
         Intent intent = new Intent(this,login_activity.class);
         startActivity(intent);
     }
-
+    /**
+     * jump to register page
+     */
     public void registerPage(View view) {
         Intent intent = new Intent(this,Registration.class);
         startActivity(intent);

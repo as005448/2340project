@@ -11,6 +11,10 @@ import com.example.user.binarybeast.R;
 
 import java.util.NoSuchElementException;
 
+/**
+ * @author Yan Chen
+ * @version 1.0
+ */
 
 public class login_activity extends Activity {
 
@@ -19,35 +23,36 @@ public class login_activity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_activity);
     }
-
+    /*
+     *  authenticate login information
+     *
+     *  @param view the view of current activity
+     *
+     */
     public void authenticateUser(View view) {
         EditText usernameEntry = (EditText) findViewById(R.id.usernameText);
         EditText passwordEntry = (EditText) findViewById(R.id.passwordText);
         String username = usernameEntry.getText().toString();
         String password = passwordEntry.getText().toString();
-//        if (Registration.accounts.existAccount(username)) {
-//            if (Registration.accounts.verifyAccount(username, password)) {
-//                //start activity, say you logged in, whatevers
-//                Registration.accounts.setCurrentUser(username);
-//                Intent intent = new Intent(this, HubActivity.class);
-//                startActivity(intent);
-//            } else {
-//                Toast.makeText(login_activity.this, "Password incorrect!", Toast.LENGTH_LONG).show();
-//            }
-//        } else {
-//            Toast.makeText(login_activity.this, "Username does not exist!", Toast.LENGTH_LONG).show();
-//        }
-        try {
+        if (MainActivity.helper.findUser(username, "user") == null) {
+            //check if the username does exist
+            Toast.makeText(login_activity.this, "Username does not exist!", Toast.LENGTH_LONG).show();
+        } else {
+            //check password
             if (MainActivity.helper.login(username, password)) {
                 Intent intent = new Intent(this, MyMain.class);
                 startActivity(intent);
             } else {
                 Toast.makeText(login_activity.this, "Password does not match.", Toast.LENGTH_LONG).show();
             }
-        } catch (NoSuchElementException e) {
-            Toast.makeText(login_activity.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
+    /*
+     *  cancel login and return to welcome screen
+     *
+     *  @param view the view of current activity
+     *
+     */
     public void cancelLogin(View view){
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);

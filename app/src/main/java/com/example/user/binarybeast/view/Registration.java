@@ -14,7 +14,10 @@ import com.example.user.binarybeast.model.UserData;
 
 import java.util.NoSuchElementException;
 
-
+/**
+ * @author Yan Chen
+ * @version 1.0
+ */
 public class Registration extends Activity {
 
     @Override
@@ -60,7 +63,6 @@ public class Registration extends Activity {
      *  submit registration information
      *
      *  @param view the view of current activity
-     *
      */
     public void submit(View view){
         EditText usernameEntry = (EditText) findViewById(R.id.r_userName);
@@ -74,12 +76,16 @@ public class Registration extends Activity {
         String name = nameEntry.getText().toString();
         String email = emailEntry.getText().toString();
         if (username.equals("") || password.equals("") || name.equals("") || email.equals("")) {
+            //warning if there are information not fill out
             Toast.makeText(Registration.this, "Please fill out all information", Toast.LENGTH_LONG).show();
         } else {
             if (vPassword.equals(password)) {
+                //passwords have to match
                 if (MainActivity.helper.findUser(username, "user") != null) {
+                    //check if username has already been used
                     Toast.makeText(Registration.this, "The username has been used", Toast.LENGTH_LONG).show();
                 } else {
+                    //add new user and jump to main page
                     MainActivity.helper.addUser(username, password, name, email);
                     Toast.makeText(Registration.this, "You made it!", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(this, MainActivity.class);

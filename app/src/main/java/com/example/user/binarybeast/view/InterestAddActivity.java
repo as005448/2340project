@@ -9,7 +9,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.user.binarybeast.R;
-
+/**
+ * Created by Yan on 2015/2/24.
+ * @author Yan Chen
+ * @version 1.0
+ */
 public class InterestAddActivity extends ActionBarActivity {
     EditText itemName;
     EditText category;
@@ -47,7 +51,10 @@ public class InterestAddActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
+    /**
+     * submit and add interest
+     * @param view current view
+     */
     public void submitInterest(View view) {
         String iName = itemName.getText().toString();
         String cName = category.getText().toString();

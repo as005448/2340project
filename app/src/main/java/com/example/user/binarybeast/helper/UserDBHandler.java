@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.ContentValues;
 import android.util.Log;
 
+import com.example.user.binarybeast.Friend;
 import com.example.user.binarybeast.model.FriendTable;
 import com.example.user.binarybeast.model.Interest;
 import com.example.user.binarybeast.model.UserData;
@@ -14,11 +15,10 @@ import com.example.user.binarybeast.model.UserData;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /*
  *  @author Marcus Godwin
+ *  @author Yan Chen
  *  @version 1.0
- *
  */
 public class UserDBHandler extends SQLiteOpenHelper {
     //Static vars
@@ -53,9 +53,6 @@ public class UserDBHandler extends SQLiteOpenHelper {
     private static final String KEY_INTEREST_PRICE = "price";
     private static final String KEY_INTEREST_OWNER = "owner";
 
-//    private static UserDBHandler instance = null;
-    
-//    public static Context ctx = null;
     /*
      * Constructor for the database handler.
      *
@@ -65,16 +62,6 @@ public class UserDBHandler extends SQLiteOpenHelper {
     public UserDBHandler(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
-    
-    /*
-     * Getter for instance of UserDBHandler
-     * @return the UserDBHandler
-     */
-//    public static UserDBHandler getInstance() {
-//        if (instance == null)
-//            instance = new UserDBHandler();
-//        return instance;
-//    }
 
     /*
      * Function called on the creation of the database.
@@ -85,8 +72,6 @@ public class UserDBHandler extends SQLiteOpenHelper {
     //Create tables
     @Override
     public void onCreate(SQLiteDatabase db) {
-//        String CREATE_USERS_TABLE = "CREATE TABLE " + TABLE_USERS + "("
-//            + KEY_USER + " TEXT," + KEY_PASS + " TEXT" + ")";
         String CREATE_TABLE_USERS = "CREATE TABLE "
                 + TABLE_USERS + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_USER
                 + " TEXT," + KEY_PASS + " TEXT," + KEY_NAME + " TEXT," + KEY_EMAIL
@@ -124,27 +109,14 @@ public class UserDBHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-
-    //Create, Read, Update, and Delete ops
-    
-    /*
-     * Adds the user and password information to the database.
-     *
-     * @param user the username of the user to add
-     * @param pass the password of the user to add
-     *
+    /**
+     * add user's information to database
+     * @param user username of the new user
+     * @param pass password of the new user
+     * @param name name of the new user
+     * @param email email of the new user
+     * @return user's id
      */
-    //Add new users
-//    public void addUser(String user, String pass) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//
-//        ContentValues values = new ContentValues();
-//        values.put(KEY_USER, user);
-//        values.put(KEY_PASS, pass);
-//
-//        db.insert(TABLE_USERS, null, values);
-//        db.close();
-//    }
     public long addUser(String user, String pass, String name, String email) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -159,6 +131,13 @@ public class UserDBHandler extends SQLiteOpenHelper {
         db.close();
         return userID;
     }
+
+    /**
+     * get user by it's name or email or username
+     * @param information information of the user
+     * @param type type of the information
+     * @return user's data
+     */
     public UserData getUser(String information, String type) {
         String selectQuery;
         if (type.equals("name")) {
@@ -188,6 +167,12 @@ public class UserDBHandler extends SQLiteOpenHelper {
         db.close();
         return user;
     }
+
+    /**
+     * get user by it's id
+     * @param user_id id of the user
+     * @return user's data
+     */
     public UserData getUser(long user_id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -212,13 +197,43 @@ public class UserDBHandler extends SQLiteOpenHelper {
         db.close();
         return user;
     }
-    /*
-    * getting all users
-    * */
 
-     public List<UserData> getAllUser() {
-        List<UserData> users = new ArrayList<UserData>();
-        String selectQuery = "SELECT * FROM " + TABLE_USERS;
+    /**
+     * check to see if two users are friend or not
+     * @param user user1
+     * @param friend user2
+     * @return true if they are friend, false otherwise
+     */
+    public boolean isFriend(UserData user, UserData friend) {
+        String selectQuery = "SELECT  * FROM " + TABLE_FRIEND + " WHERE "
+                + KEY_USER_ID + " = '" + user.getId() + "' AND " + KEY_FRIEND_ID
+                + " = '" + friend.getId() + "';";
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c.moveToFirst()) {
+            db.close();
+            return true;
+        }
+        db.close();
+        return false;
+    }
+
+    /**
+     * return list of user's friend
+     * @param user current user
+     * @return list of user's friend
+     */
+    public List<UserData> getFriends(UserData user) {
+        int userId = user.getId();
+        List<UserData> friendList = new ArrayList<>();
+        String selectQuery = "SELECT  * FROM " + TABLE_USERS + " u, "
+                + TABLE_FRIEND + " f WHERE f."
+                + KEY_USER_ID + " = '" + userId + "'" + " AND f." + KEY_FRIEND_ID
+                + " = " + "u." + KEY_ID;
 
         Log.e(LOG, selectQuery);
 
@@ -226,52 +241,34 @@ public class UserDBHandler extends SQLiteOpenHelper {
         Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
-        int i = 0;
         if (c.moveToFirst()) {
+            int i = 0;
             do {
-                UserData user = new UserData();
+                UserData u = new UserData();
 
-                user.setId(c.getInt(c.getColumnIndex(KEY_ID)));
-                user.setUser((c.getString(c.getColumnIndex(KEY_USER))));
-                user.setPass(c.getString(c.getColumnIndex(KEY_PASS)));
-                user.setName(c.getString(c.getColumnIndex(KEY_NAME)));
-                user.setEmail(c.getString(c.getColumnIndex(KEY_EMAIL)));
-                user.setRate(c.getInt(c.getColumnIndex(KEY_RATE)));
-                user.setPost(c.getInt(c.getColumnIndex(KEY_POST)));
+                u.setId(c.getInt(c.getColumnIndex(KEY_ID)));
+                u.setUser((c.getString(c.getColumnIndex(KEY_USER))));
+                u.setPass(c.getString(c.getColumnIndex(KEY_PASS)));
+                u.setName(c.getString(c.getColumnIndex(KEY_NAME)));
+                u.setEmail(c.getString(c.getColumnIndex(KEY_EMAIL)));
+                u.setRate(c.getInt(c.getColumnIndex(KEY_RATE)));
+                u.setPost(c.getInt(c.getColumnIndex(KEY_POST)));
 
                 // adding to USER list
-                users.add(i, user);
+                friendList.add(i, u);
                 i++;
             } while (c.moveToNext());
         }
-         db.close();
-        return users;
-    }
-    public List<FriendTable> getFriendTable() {
-        List<FriendTable> friendTable = new ArrayList<FriendTable>();
-        String selectQuery = "SELECT  * FROM " + TABLE_FRIEND;
-
-        Log.e(LOG, selectQuery);
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            do {
-                FriendTable friend = new FriendTable();
-                friend.setId(c.getInt((c.getColumnIndex(KEY_ID))));
-                friend.setUserID(c.getInt((c.getColumnIndex(KEY_USER_ID))));
-                friend.setFriendID(c.getInt((c.getColumnIndex(KEY_FRIEND_ID))));
-                friend.setPost(c.getInt((c.getColumnIndex(KEY_FRIEND_POST))));
-
-                // adding to USER list
-                friendTable.add(friend);
-            } while (c.moveToNext());
-        }
         db.close();
-        return friendTable;
+        return friendList;
     }
+
+    /**
+     * add friends' information to database
+     * @param user_id user of the new friend relation
+     * @param friend_id friend of the new friend relation
+     * @return friend table's id
+     */
     public long addFriend(long user_id, long friend_id) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -291,6 +288,13 @@ public class UserDBHandler extends SQLiteOpenHelper {
         db.close();
         return id;
     }
+
+    /**
+     * get pair of the friends
+     * @param user user1
+     * @param friend user2
+     * @return list of the pair
+     */
     public List<Integer> getFriendPair(int user, int friend) {
         List<Integer> pair = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -307,6 +311,12 @@ public class UserDBHandler extends SQLiteOpenHelper {
         db.close();
         return pair;
     }
+
+    /**
+     * delete relations of two users
+     * @param user user1
+     * @param friend user2
+     */
     public void deleteFriend(int user, int friend) {
         List<Integer> pair = getFriendPair(user, friend);
         SQLiteDatabase db = this.getWritableDatabase();
@@ -317,6 +327,14 @@ public class UserDBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    /**
+     * add interest's information to database
+     * @param name name of the new interest
+     * @param category category of the new interest
+     * @param price price of the new interest
+     * @param owner owner of the new interest
+     * @return interest's id
+     */
     public long addInterest(String name, String category, String price, int owner) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -330,6 +348,11 @@ public class UserDBHandler extends SQLiteOpenHelper {
         return interestID;
     }
 
+    /**
+     * find interest by it's name
+     * @param name name of the new interest
+     * @return list of interest of the interest name
+     */
     public List<Interest> findInterestByName(String name) {
         List<Interest> interests = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -349,6 +372,12 @@ public class UserDBHandler extends SQLiteOpenHelper {
         db.close();
         return interests;
     }
+
+    /**
+     * find interest by it's owner's id
+     * @param id id of the owner
+     * @return list of interest
+     */
     public List<Interest> findInterestByOwner(int id) {
         List<Interest> interests = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -368,55 +397,6 @@ public class UserDBHandler extends SQLiteOpenHelper {
         db.close();
         return interests;
     }
-//    public void deleteFriend(long friend_id) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        db.delete(TABLE_FRIEND, KEY_ID + " = ?",
-//                new String[] { String.valueOf(friend_id) });
-//        db.close();
-//    }
 
-    /*
-     * Checks the current user against the database to see if they are
-     * already registered.
-     *
-     * @param user the name of the user to check if they are already
-     * registered.
-     *
-     * @return true if the user is registered, otherwise false
-     *
-     */
-//    public boolean isRegistered(String user) {
-//        boolean res = false;
-//        SQLiteDatabase db = this.getReadableDatabase();
-//
-//        Cursor cursor = db.query(TABLE_USERS, new String[] {
-//            KEY_USER, KEY_PASS }, KEY_USER + "=?",
-//            new String[] {user}, null, null, null, null);
-//
-//        res = cursor.moveToFirst();
-//        return res;
-//    }
-    /*
-     *  Returns the all of users and passwords 
-     *  registered with the app as a hashmap.
-     *  
-     *  @return a hashmap of users and their passwords
-     *
-     */
-//    public HashMap<String, String> getAllUsers(){
-//        HashMap<String, String> userList = new HashMap<String, String>();
-//        String grabQuery = "SELECT * FROM " + TABLE_USERS;
-//
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        Cursor cursor = db.rawQuery(grabQuery, null);
-//
-//        if(cursor.moveToFirst()) {
-//            do {
-//                userList.put(cursor.getString(0),cursor.getString(1));
-//            } while(cursor.moveToNext());
-//        }
-//
-//        return userList;
-//    }
 
 }

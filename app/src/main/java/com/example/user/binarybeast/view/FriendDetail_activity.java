@@ -12,7 +12,9 @@ import com.example.user.binarybeast.R;
 import com.example.user.binarybeast.model.UserData;
 
 /**
- * Created by Administrator on 2015/2/24.
+ * Created by Yan on 2015/2/24.
+ * @author Yan Chen
+ * @version 1.0
  */
 
 public class FriendDetail_activity extends ActionBarActivity {
@@ -30,7 +32,10 @@ public class FriendDetail_activity extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         initTextViews(name);
     }
-
+    /**
+     * initialize TextViews to show friend's detail
+     * @param name name of the friend
+     */
     private void initTextViews(String name) {
         textName = (TextView) findViewById(R.id.textView_disName);
         textEmail = (TextView) findViewById(R.id.textView_disEmail);
@@ -66,6 +71,10 @@ public class FriendDetail_activity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    /**
+     * delete the friend and return to mymain activity
+     * @param view current view
+     */
     public void deleteFriend(View view) {
         MainActivity.helper.deleteFriend(friend);
         Intent intent = new Intent(this, MyMain.class);

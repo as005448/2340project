@@ -12,7 +12,11 @@ import com.example.user.binarybeast.model.Interest;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Created by Yan on 2015/2/24.
+ * @author Yan Chen
+ * @version 1.0
+ */
 public class InterestListActivity extends ActionBarActivity {
 
     @Override
@@ -22,13 +26,17 @@ public class InterestListActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         initListView();
     }
-
+    /**
+     * initialize interest list to show all interest of the user
+     */
     private void initListView() {
         List<Interest> interests = MainActivity.helper.getInterestListByOwner(MainActivity.helper.currUser.getId());
         List<String> interestNames = new ArrayList<>();
+        //get all interest information
         for (Interest i:interests) {
-            interestNames.add(i.getName());
+            interestNames.add("Name: " + i.getName() + "  Category: " + i.getCategory() + "  Price: " + i.getPrice());
         }
+        //set up listview adapter
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, interestNames);
         ListView interestListView = (ListView) findViewById(R.id.interestList);
