@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.user.binarybeast.HubActivity;
 import com.example.user.binarybeast.R;
 import com.example.user.binarybeast.model.UserData;
 
@@ -69,6 +70,8 @@ public class FriendAdderActivity extends ActionBarActivity {
                 Toast.makeText(FriendAdderActivity.this, "the user is already your friend.", Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(FriendAdderActivity.this, "Friend added", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(this,MyMain.class);
+                startActivity(intent);
             }
         } else if (addFriendEmail != null) {
             //add friend by email
@@ -76,6 +79,8 @@ public class FriendAdderActivity extends ActionBarActivity {
                 Toast.makeText(FriendAdderActivity.this, "the user is already your friend.", Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(FriendAdderActivity.this, "Friend added", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(this,MyMain.class);
+                startActivity(intent);
             }
         } else {
             Toast.makeText(FriendAdderActivity.this, "Can not find the user", Toast.LENGTH_LONG).show();

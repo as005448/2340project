@@ -61,6 +61,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
      */
     public UserDBHandler(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        //forceUpdate();
     }
 
     /*
@@ -280,10 +281,9 @@ public class UserDBHandler extends SQLiteOpenHelper {
         long id = db.insert(TABLE_FRIEND, null, values);
 
         ContentValues values2 = new ContentValues();
-        values.put(KEY_USER_ID,friend_id);
-        values.put(KEY_FRIEND_ID, user_id);
-        values.put(KEY_FRIEND_POST, 0);
-
+        values2.put(KEY_USER_ID,friend_id);
+        values2.put(KEY_FRIEND_ID, user_id);
+        values2.put(KEY_FRIEND_POST, 0);
         db.insert(TABLE_FRIEND, null, values2);
         db.close();
         return id;
@@ -396,6 +396,16 @@ public class UserDBHandler extends SQLiteOpenHelper {
         }
         db.close();
         return interests;
+    }
+    
+    /**
+     * Should not be called!
+     * Used only by me to clear out the database forcefully
+     * -Marcus
+     */
+    public void forceUpdate() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        onUpgrade(db, 1, 1);
     }
 
 
