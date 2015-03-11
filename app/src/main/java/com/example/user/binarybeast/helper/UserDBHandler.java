@@ -68,7 +68,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
      */
     public UserDBHandler(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        forceUpdate();
+        //forceUpdate();
     }
 
     /*
@@ -95,7 +95,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
         String CREATE_TABLE_SALES = "CREATE TABLE "
                 + TABLE_SALES + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_INTEREST_NAME
                 + " TEXT," + KEY_SALE_LOCATION + " TEXT," + KEY_INTEREST_PRICE
-                + " INTEGER" + KEY_INTEREST_OWNER + " INTEGER" +")";
+                + " INTEGER, " + KEY_INTEREST_OWNER + " INTEGER" +")";
         db.execSQL(CREATE_TABLE_USERS);
         db.execSQL(CREATE_TABLE_FRIEND);
         db.execSQL(CREATE_TABLE_INTEREST);
@@ -117,6 +117,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_FRIEND);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_INTEREST);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SALES);
 
         //make new table
         onCreate(db);
@@ -423,7 +424,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_INTEREST_NAME, name);
-        values.put(KEY_INTEREST_CATEGORY, category);
+        //values.put(KEY_INTEREST_CATEGORY, category);
         values.put(KEY_INTEREST_PRICE, price);
         values.put(KEY_INTEREST_OWNER, owner);
         values.put(KEY_SALE_LOCATION, location);
@@ -466,11 +467,11 @@ public class UserDBHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {
             do {
-                String category = cursor.getString(cursor.getColumnIndex(KEY_INTEREST_CATEGORY));
+                //String category = cursor.getString(cursor.getColumnIndex(KEY_INTEREST_CATEGORY));
                 String location = cursor.getString(cursor.getColumnIndex(KEY_SALE_LOCATION));
                 int price = cursor.getInt(cursor.getColumnIndex(KEY_INTEREST_PRICE));
                 int owner = cursor.getInt(cursor.getColumnIndex(KEY_INTEREST_OWNER));
-                Sale sale = new Sale(name, category, price, location, owner);
+                Sale sale = new Sale(name, "", price, location, owner);
                 sales.add(sale);
             } while (cursor.moveToNext());
         }
