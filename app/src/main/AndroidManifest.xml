@@ -88,6 +88,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.user.binarybeast.view.MyMain" />
         </activity>
+        <activity
+            android:name=".view.SaleListActivity"
+            android:label="@string/title_activity_sale_list" >
+        </activity>
+        <activity
+            android:name=".view.SaleAddActivity"
+            android:label="@string/title_activity_sale_add" >
+        </activity>
     </application>
 
 </manifest>

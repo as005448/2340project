@@ -8,10 +8,24 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add"
+        android:text="Add Interest"
         android:id="@+id/button_add"
         android:layout_gravity="center_horizontal"
         android:onClick="AddOnClick"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Sale"
+        android:id="@+id/button_add_s"
+        android:layout_gravity="center_horizontal"
+        android:onClick="AddSOnClick"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View Sales"
+        android:id="@+id/button_view_sales"
+        android:layout_gravity="center_horizontal"
+        android:onClick="ViewSOnClick"/>
 
     <TextView
         android:layout_width="fill_parent"

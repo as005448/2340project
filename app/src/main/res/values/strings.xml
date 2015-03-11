@@ -14,5 +14,7 @@
     <string name="title_activity_friend_adder">FriendAdderActivity</string>
     <string name="title_activity_interest_add">InterestAddActivity</string>
     <string name="title_activity_interest_list">InterestListActivity</string>
+    <string name="title_activity_sale_list">SaleListActivity</string>
+    <string name="title_activity_sale_add">SaleAddActivity</string>
 
 </resources>

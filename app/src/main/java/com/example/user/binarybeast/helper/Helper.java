@@ -5,6 +5,7 @@ import android.content.Context;
 import com.example.user.binarybeast.Friend;
 import com.example.user.binarybeast.model.FriendTable;
 import com.example.user.binarybeast.model.Interest;
+import com.example.user.binarybeast.model.Sale;
 import com.example.user.binarybeast.model.UserData;
 
 import java.util.ArrayList;
@@ -136,6 +137,19 @@ public class Helper {
     }
 
     /**
+     * add a new sale
+     * @param name name of the new sale
+     * @param category category of the new sale
+     * @param price price of the new sale
+     * @param location location of the new sale
+     * @return return true if add successful otherwise return false
+     */
+    public boolean addSale(String name, String category, String price, String location) {
+        dataBase.addSale(name, category, price, location,currUser.getId());
+        return true;
+    }
+
+    /**
      * sign out
      */
     public void signOut() {
@@ -150,5 +164,9 @@ public class Helper {
     public List<Interest> getInterestListByOwner(int id) {
         List<Interest> interestList = new ArrayList<>(dataBase.findInterestByOwner(id));
         return interestList;
+    }
+
+    public List<Sale> getSaleByPrice(String name, int price) {
+        return dataBase.findSales(name, price);
     }
 }

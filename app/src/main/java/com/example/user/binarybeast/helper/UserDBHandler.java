@@ -10,6 +10,7 @@ import android.util.Log;
 import com.example.user.binarybeast.Friend;
 import com.example.user.binarybeast.model.FriendTable;
 import com.example.user.binarybeast.model.Interest;
+import com.example.user.binarybeast.model.Sale;
 import com.example.user.binarybeast.model.UserData;
 
 import java.util.ArrayList;
@@ -32,6 +33,8 @@ public class UserDBHandler extends SQLiteOpenHelper {
     private static final String TABLE_USERS = "users";
     private static final String TABLE_FRIEND = "friend";
     private static final String TABLE_INTEREST = "interest";
+    private static final String TABLE_SALES = "sales";
+
 
     // table users column names
     private static final String KEY_ID = "id";
@@ -48,10 +51,14 @@ public class UserDBHandler extends SQLiteOpenHelper {
     private static final String KEY_FRIEND_POST = "friend_post";
 
     //table interest column names
+    //reuse for sales columns
     private static final String KEY_INTEREST_NAME = "name";
     private static final String KEY_INTEREST_CATEGORY = "category";
     private static final String KEY_INTEREST_PRICE = "price";
     private static final String KEY_INTEREST_OWNER = "owner";
+
+    private static final String KEY_SALE_LOCATION = "location";
+
 
     /*
      * Constructor for the database handler.
@@ -61,7 +68,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
      */
     public UserDBHandler(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        //forceUpdate();
+        forceUpdate();
     }
 
     /*
@@ -85,9 +92,14 @@ public class UserDBHandler extends SQLiteOpenHelper {
                 + TABLE_INTEREST + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_INTEREST_NAME
                 + " TEXT," + KEY_INTEREST_CATEGORY + " TEXT," + KEY_INTEREST_PRICE
                 + " INTEGER, " + KEY_INTEREST_OWNER + " INTEGER" + ")";
+        String CREATE_TABLE_SALES = "CREATE TABLE "
+                + TABLE_SALES + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_INTEREST_NAME
+                + " TEXT," + KEY_SALE_LOCATION + " TEXT," + KEY_INTEREST_PRICE
+                + " INTEGER" + KEY_INTEREST_OWNER + " INTEGER" +")";
         db.execSQL(CREATE_TABLE_USERS);
         db.execSQL(CREATE_TABLE_FRIEND);
         db.execSQL(CREATE_TABLE_INTEREST);
+        db.execSQL(CREATE_TABLE_SALES);
     }
     
     /*
@@ -396,6 +408,74 @@ public class UserDBHandler extends SQLiteOpenHelper {
         }
         db.close();
         return interests;
+    }
+
+    /**
+     * add a sales report to the database
+     * @param name name of the new sale
+     * @param category category of the new sale
+     * @param price price of the new sale
+     * @param location location of the new sale
+     * @param owner owner of the new interest
+     * @return sale's id
+     */
+    public long addSale(String name, String category, String price, String location, int owner) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_INTEREST_NAME, name);
+        values.put(KEY_INTEREST_CATEGORY, category);
+        values.put(KEY_INTEREST_PRICE, price);
+        values.put(KEY_INTEREST_OWNER, owner);
+        values.put(KEY_SALE_LOCATION, location);
+
+        long interestID = db.insert(TABLE_SALES, null, values);
+        db.close();
+        return interestID;
+    }
+
+    /**
+     * find sales by name
+     * @param name name of the new sale
+     * @param price price boundary
+     * @return list of sales by that name
+     */
+    public List<Sale> findSales(String name, int price) {
+        List<Sale> temp = findSaleByName(name);
+        List<Sale> sales = new ArrayList<>();
+        //only add sales below or at price
+        for(Sale s : temp) {
+            if (s.getPrice() <= price) {
+                sales.add(s);
+            }
+        }
+
+        return sales;
+    }
+
+    /**
+     * find sales by name
+     * @param name name of the new sale
+     * @return list of sales by that name
+     */
+    public List<Sale> findSaleByName(String name) {
+        List<Sale> sales = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "SELECT * FROM " + TABLE_SALES + " WHERE "
+                + KEY_INTEREST_NAME + " = '" + name + "';";
+        Log.e(LOG, selectQuery);
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                String category = cursor.getString(cursor.getColumnIndex(KEY_INTEREST_CATEGORY));
+                String location = cursor.getString(cursor.getColumnIndex(KEY_SALE_LOCATION));
+                int price = cursor.getInt(cursor.getColumnIndex(KEY_INTEREST_PRICE));
+                int owner = cursor.getInt(cursor.getColumnIndex(KEY_INTEREST_OWNER));
+                Sale sale = new Sale(name, category, price, location, owner);
+                sales.add(sale);
+            } while (cursor.moveToNext());
+        }
+        db.close();
+        return sales;
     }
     
     /**

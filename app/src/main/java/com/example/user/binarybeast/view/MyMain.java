@@ -236,6 +236,24 @@ public class MyMain extends Activity implements View.OnClickListener {
     }
 
     /**
+     * jump to add sale page
+     * @param view current view
+     */
+    public void AddSOnClick(View view) {
+        Intent intent = new Intent(this, SaleAddActivity.class);
+        startActivity(intent);
+    }
+
+    /**
+     * jump to view sale page
+     * @param view current view
+     */
+    public void ViewSOnClick(View view) {
+        Intent intent = new Intent(this, SaleListActivity.class);
+        startActivity(intent);
+    }
+
+    /**
      * jump to add friend page
      * @param view current view
      */
