@@ -29,6 +29,7 @@ public class SaleAddActivity extends ActionBarActivity {
         category = (EditText) findViewById(R.id.category);
         price = (EditText) findViewById(R.id.price);
         location = (EditText) findViewById(R.id.location);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
 
