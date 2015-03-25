@@ -169,4 +169,7 @@ public class Helper {
     public List<Sale> getSaleByPrice(String name, int price) {
         return dataBase.findSales(name, price);
     }
+    public Sale getSaleByName(String name) {
+        return dataBase.findSaleByName(name).get(0);
+    }
 }

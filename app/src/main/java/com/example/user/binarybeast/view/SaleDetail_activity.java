@@ -1,0 +1,76 @@
+package com.example.user.binarybeast.view;
+
+import android.content.Intent;
+import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+import com.example.user.binarybeast.R;
+import com.example.user.binarybeast.model.Sale;
+import com.example.user.binarybeast.model.UserData;
+
+public class SaleDetail_activity extends ActionBarActivity {
+    private TextView textName;
+    private TextView textCategory;
+    private TextView textPrice;
+    private TextView textLocation;
+    private Sale sale;
+    private String name;
+    private String location;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        name = intent.getStringExtra("name");
+        setContentView(R.layout.activity_sale_detail_activity);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        initTextViews(name);
+    }
+    private void initTextViews(String name) {
+        textName = (TextView) findViewById(R.id.itemName);
+        textCategory = (TextView) findViewById(R.id.category);
+        textPrice = (TextView) findViewById(R.id.price);
+        textLocation = (TextView) findViewById(R.id.location);
+
+        sale = MainActivity.helper.getSaleByName(name);
+        String cname = " " + name;
+        String category = " " + sale.getCategory();
+        String price = " " + sale.getPrice();
+        location = " " + sale.getLocation();
+        textName.setText(cname.toCharArray(), 0, cname.length());
+        textCategory.setText(category.toCharArray(), 0, category.length());
+        textPrice.setText(price.toCharArray(), 0, price.length());
+        textLocation.setText(location.toCharArray(), 0, location.length());
+    }
+
+    public void goMap(View v) {
+        Intent i = new Intent(this,MapsActivity.class);
+        i.putExtra("location",location);
+        i.putExtra("description",name);
+        startActivity(i);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_sale_detail_activity, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+}

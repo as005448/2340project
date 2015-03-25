@@ -16,5 +16,7 @@
     <string name="title_activity_interest_list">InterestListActivity</string>
     <string name="title_activity_sale_list">SaleListActivity</string>
     <string name="title_activity_sale_add">SaleAddActivity</string>
+    <string name="title_activity_sale_detail_activity">SaleDetail_activity</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>
