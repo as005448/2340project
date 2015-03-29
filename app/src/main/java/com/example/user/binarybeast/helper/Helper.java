@@ -24,6 +24,7 @@ public class Helper {
         defaultUser();
     }
 
+
     /**
      * upgrade the database
      */
