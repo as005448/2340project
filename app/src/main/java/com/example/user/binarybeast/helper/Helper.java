@@ -2,8 +2,6 @@ package com.example.user.binarybeast.helper;
 
 import android.content.Context;
 
-import com.example.user.binarybeast.Friend;
-import com.example.user.binarybeast.model.FriendTable;
 import com.example.user.binarybeast.model.Interest;
 import com.example.user.binarybeast.model.Sale;
 import com.example.user.binarybeast.model.UserData;
@@ -52,7 +50,7 @@ public class Helper {
         if (information == null) {
             throw new IllegalArgumentException("information is null");
         }
-        if (information == null) {
+        if (type == null) {
             throw new IllegalArgumentException("type is null");
         }
         return dataBase.getUser(information, type);
