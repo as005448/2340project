@@ -31,16 +31,17 @@ public class MapsActivity extends FragmentActivity {
         setUpMapIfNeeded();
         Geocoder coder = new Geocoder(this);
         try {
-            List<Address> addrs = coder.getFromLocation(33.74, -84.38, 2);
+            List<Address> addrs = coder.getFromLocation(33.755, -84.39, 2);
             for (Address add : addrs) {
                 Toast t = Toast.makeText(this, add.toString(),Toast.LENGTH_LONG);
                 t.show();
             }
 
-            addrs = coder.getFromLocationName(location, 4);
+            addrs = coder.getFromLocationName(location+" Atlanta", 4, 34, -85, 33.74, -84.3);
             for (Address add : addrs) {
                 Toast t = Toast.makeText(this, add.toString(),Toast.LENGTH_LONG);
                 t.show();
+                addLoc(add);
             }
 
         } catch (IOException e) {
@@ -92,5 +93,10 @@ public class MapsActivity extends FragmentActivity {
         LatLng coords = new LatLng(33.755, -84.39);
         mMap.addMarker(new MarkerOptions().position(coords).title("Marker"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coords, 13));
+    }
+
+    private void addLoc(Address a) {
+        LatLng coords = new LatLng(a.getLatitude(), a.getLongitude());
+        mMap.addMarker(new MarkerOptions().position(coords).title("DEAL!!"));
     }
 }
