@@ -13,6 +13,7 @@ import com.example.user.binarybeast.helper.UserDBHandler;
  * @version 1.0
  *
  */
+@SuppressWarnings("ALL")
 public class UserData {
 
     private String currentUser;

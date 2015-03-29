@@ -7,6 +7,7 @@ package com.example.user.binarybeast.model;
 /**
  * Class to represent a sale.
  */
+@SuppressWarnings("ALL")
 public class Sale {
     private String name;
     private String category;

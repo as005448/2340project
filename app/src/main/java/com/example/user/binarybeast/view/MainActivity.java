@@ -6,11 +6,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
 import com.example.user.binarybeast.R;
 import com.example.user.binarybeast.helper.Helper;
-import com.example.user.binarybeast.helper.UserDBHandler;
 
 /**
  * @author Yan Chen
@@ -23,19 +21,9 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Button login_button = (Button) findViewById(R.id.login_button);
-        login_button.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                loginPage();
-            }
-        });
         if (helper == null) {
             helper = new Helper(getApplicationContext());
         }
-//        if(UserDBHandler.ctx == null){
-//            UserDBHandler.ctx = this;
-//        }
     }
 
 
@@ -64,13 +52,14 @@ public class MainActivity extends Activity {
     /**
      * jump to login page
      */
-    public void loginPage(){
+    public void loginPage(View view){
         Intent intent = new Intent(this,login_activity.class);
         startActivity(intent);
     }
     /**
      * jump to register page
      */
+    @SuppressWarnings("UnusedParameters")
     public void registerPage(View view) {
         Intent intent = new Intent(this,Registration.class);
         startActivity(intent);

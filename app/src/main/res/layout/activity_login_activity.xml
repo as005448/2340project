@@ -8,7 +8,8 @@
 
     <TextView android:text="Please login!" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2" />
+        android:id="@+id/textView2"
+        tools:ignore="HardcodedText" />
 
     <EditText
         android:layout_width="match_parent"
@@ -17,7 +18,8 @@
         android:layout_below="@+id/textView2"
         android:layout_alignParentStart="true"
         android:layout_marginTop="57dp"
-        android:hint="UserName" />
+        android:hint="UserName"
+        tools:ignore="HardcodedText,RtlCompat" />
 
     <EditText
         android:layout_width="match_parent"
@@ -27,7 +29,8 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="15dp"
         android:hint="Password"
-        android:password="true" />
+        android:password="true"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:layout_width="match_parent"

@@ -46,6 +46,7 @@ public class SaleDetail_activity extends ActionBarActivity {
         textLocation.setText(location.toCharArray(), 0, location.length());
     }
 
+    @SuppressWarnings("UnusedParameters")
     public void goMap(View v) {
         Intent i = new Intent(this,MapsActivity.class);
         i.putExtra("location",location);

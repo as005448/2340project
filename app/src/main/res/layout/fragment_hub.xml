@@ -18,7 +18,8 @@
             android:layout_height="50dp"
             android:id="@+id/add_friend_b"
             android:text="Add a Friend"
-            android:onClick="AddFriend"/>
+            android:onClick="AddFriend"
+            tools:ignore="HardcodedText" />
 
         <ListView
             android:layout_width="wrap_content"

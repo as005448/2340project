@@ -7,8 +7,6 @@ import android.content.Context;
 import android.content.ContentValues;
 import android.util.Log;
 
-import com.example.user.binarybeast.Friend;
-import com.example.user.binarybeast.model.FriendTable;
 import com.example.user.binarybeast.model.Interest;
 import com.example.user.binarybeast.model.Sale;
 import com.example.user.binarybeast.model.UserData;
@@ -131,6 +129,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
      * @param email email of the new user
      * @return user's id
      */
+    @SuppressWarnings("UnusedReturnValue")
     public long addUser(String user, String pass, String name, String email) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -283,6 +282,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
      * @param friend_id friend of the new friend relation
      * @return friend table's id
      */
+    @SuppressWarnings("UnusedReturnValue")
     public long addFriend(long user_id, long friend_id) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -348,6 +348,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
      * @param owner owner of the new interest
      * @return interest's id
      */
+    @SuppressWarnings("UnusedReturnValue")
     public long addInterest(String name, String category, String price, int owner) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -420,6 +421,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
      * @param owner owner of the new interest
      * @return sale's id
      */
+    @SuppressWarnings({"UnusedParameters", "UnusedReturnValue"})
     public long addSale(String name, String category, String price, String location, int owner) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();

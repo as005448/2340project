@@ -75,6 +75,7 @@ public class FriendDetail_activity extends ActionBarActivity {
      * delete the friend and return to mymain activity
      * @param view current view
      */
+    @SuppressWarnings("UnusedParameters")
     public void deleteFriend(View view) {
         MainActivity.helper.deleteFriend(friend);
         Intent intent = new Intent(this, MyMain.class);

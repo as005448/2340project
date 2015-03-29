@@ -55,6 +55,7 @@ public class Registration extends Activity {
      *  @param view the view of current activity
      *
      */
+    @SuppressWarnings("UnusedParameters")
     public void rCancel(View view){
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
@@ -64,6 +65,7 @@ public class Registration extends Activity {
      *
      *  @param view the view of current activity
      */
+    @SuppressWarnings("UnusedParameters")
     public void submit(View view){
         EditText usernameEntry = (EditText) findViewById(R.id.r_userName);
         EditText passwordEntry = (EditText) findViewById(R.id.r_passWord);

@@ -60,6 +60,7 @@ public class SaleAddActivity extends ActionBarActivity {
      * submit and add interest
      * @param view current view
      */
+    @SuppressWarnings("UnusedParameters")
     public void submitSale(View view) {
         String iName = itemName.getText().toString();
         String cName = category.getText().toString();
