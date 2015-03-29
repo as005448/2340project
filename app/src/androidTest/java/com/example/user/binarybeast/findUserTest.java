@@ -1,41 +1,46 @@
 package com.example.user.binarybeast;
-
+import com.example.user.binarybeast.helper.ApplicationContextProvider;
 import com.example.user.binarybeast.helper.Helper;
 import com.example.user.binarybeast.model.UserData;
-import com.example.user.binarybeast.view.MainActivity;
 
 import junit.framework.TestCase;
-
-import org.junit.Test;
-
 /**
- * Created by Administrator on 2015/3/28.
+ * Created by Yan Chen on 2015/3/28.
  */
-public class findUserTest extends TestCase{
+public class findUserTest extends TestCase {
     Helper helper;
     @Override
     public void setUp() throws Exception {
         super.setUp();
-        helper = MainActivity.helper;
+        helper = new Helper(ApplicationContextProvider.getContext());
+    }
 
+    public void testInformationNull() throws Exception {
+        try {
+            UserData testUser = helper.findUser(null, "name");
+        } catch (IllegalArgumentException e) {
+            assertNotNull(e);
+        }
     }
-    @Test(expected = java.lang.IllegalArgumentException.class)
-    public void informationNull() {
-        UserData testUser = helper.findUser(null,"name");
+    public void testTypeNull() throws Exception {
+        try {
+              UserData testUser = helper.findUser("user",null);
+        } catch (IllegalArgumentException e) {
+            assertNotNull(e);
+        }
     }
-    @Test(expected = java.lang.IllegalArgumentException.class)
-    public void typeNull() {
-        UserData testUser = helper.findUser("user",null);
+    public void testWrongType() throws Exception {
+        try {
+            UserData testUser = helper.findUser("user","notAtype");
+        } catch (IllegalArgumentException e) {
+           assertNotNull(e);
+        }
     }
-    @Test(expected = java.lang.IllegalArgumentException.class)
-    public void wrongType() {
-        UserData testUser = helper.findUser("user","notAtype");
-    }
-    public void nullUser() {
+    public void testNullUser() throws Exception{
         UserData testUser = helper.findUser("22222", "name");
         assertNull(testUser);
     }
-    public void rightUser() {
+    public void testRightUser() throws Exception{
         UserData defultUser = helper.findUser("user", "name");
         assertEquals(defultUser.getName(),"user");
         assertEquals(defultUser.getEmail(),"user@gatech.edu");
