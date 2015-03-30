@@ -45,12 +45,12 @@ public class findUserTest extends TestCase {
         assertNull(testUser);
     }
     public void testRightUser() throws Exception{
-        UserData defultUser = helper.findUser("user", "name");
-        assertEquals(defultUser.getName(),"user");
-        assertEquals(defultUser.getEmail(),"user@gatech.edu");
-        assertEquals(defultUser.getPass(),"pass");
-        assertEquals(defultUser.getId(),1);
-        assertEquals(defultUser.getPost(),0);
-        assertEquals(defultUser.getRate(),0);
+        UserData defaultUser = helper.findUser("user", "name");
+        assertEquals(defaultUser.getName(),"user");
+        assertEquals(defaultUser.getEmail(),"user@gatech.edu");
+        assertEquals(defaultUser.getPass(),"pass");
+        assertEquals(defaultUser.getId(),1);
+        assertEquals(defaultUser.getPost(),0);
+        assertEquals(defaultUser.getRate(),0);
     }
 }
