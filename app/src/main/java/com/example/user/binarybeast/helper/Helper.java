@@ -144,6 +144,18 @@ public class Helper {
      * @return return true if add successful otherwise return false
      */
     public boolean addSale(String name, String category, String price, String location) {
+        if (name == null) {
+            throw new IllegalArgumentException("name is null");
+        }
+        if (category == null) {
+            throw new IllegalArgumentException("category is null");
+        }
+        if (price == null) {
+            throw new IllegalArgumentException("price is null");
+        }
+        if (location == null) {
+            throw new IllegalArgumentException("location is null");
+        }
         dataBase.addSale(name, category, price, location,currUser.getId());
         return true;
     }
