@@ -37,5 +37,6 @@
         android:gravity="center"
         android:text="These are hot deals!"
         android:textSize="30sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        tools:ignore="HardcodedText" />
 </LinearLayout>

@@ -9,8 +9,6 @@ import android.widget.Toast;
 
 import com.example.user.binarybeast.R;
 
-import java.util.NoSuchElementException;
-
 /**
  * @author Yan Chen
  * @version 1.0

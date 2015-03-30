@@ -1,10 +1,5 @@
 package com.example.user.binarybeast.model;
 
-import java.util.HashMap;
-import java.util.Set;
-
-import com.example.user.binarybeast.helper.UserDBHandler;
-
 /**
  * Created by Administrator on 2015/2/5.
  *

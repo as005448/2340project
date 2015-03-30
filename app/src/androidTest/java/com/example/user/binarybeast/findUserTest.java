@@ -5,16 +5,18 @@ import com.example.user.binarybeast.model.UserData;
 
 import junit.framework.TestCase;
 /**
- * Created by Yan Chen on 2015/3/28.
+ * @author Yan Chen
+ * @version 1.0
  */
 public class findUserTest extends TestCase {
-    Helper helper;
+    private Helper helper;
     @Override
     public void setUp() throws Exception {
         super.setUp();
         helper = new Helper(ApplicationContextProvider.getContext());
     }
 
+    @SuppressWarnings("UnusedAssignment")
     public void testInformationNull() throws Exception {
         try {
             UserData testUser = helper.findUser(null, "name");
@@ -22,6 +24,7 @@ public class findUserTest extends TestCase {
             assertNotNull(e);
         }
     }
+    @SuppressWarnings("UnusedAssignment")
     public void testTypeNull() throws Exception {
         try {
               UserData testUser = helper.findUser("user",null);
@@ -29,6 +32,7 @@ public class findUserTest extends TestCase {
             assertNotNull(e);
         }
     }
+    @SuppressWarnings("UnusedAssignment")
     public void testWrongType() throws Exception {
         try {
             UserData testUser = helper.findUser("user","notAtype");

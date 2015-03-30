@@ -11,7 +11,7 @@ import java.util.NoSuchElementException;
 
 public class LoginTest extends TestCase {
 
-    Helper helper;
+    private Helper helper;
 
     @Override
     public void setUp() throws Exception {
@@ -57,6 +57,7 @@ public class LoginTest extends TestCase {
 
     }
 
+    @SuppressWarnings("UnusedAssignment")
     public void testNoSuchElementException() throws Exception {
         try {
             Boolean a = helper.login("nicholas", "abc");

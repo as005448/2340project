@@ -15,9 +15,9 @@ import com.example.user.binarybeast.R;
  * @version 1.0
  */
 public class InterestAddActivity extends ActionBarActivity {
-    EditText itemName;
-    EditText category;
-    EditText price;
+    private EditText itemName;
+    private EditText category;
+    private EditText price;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

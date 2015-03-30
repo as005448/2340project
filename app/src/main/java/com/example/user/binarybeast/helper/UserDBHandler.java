@@ -19,7 +19,7 @@ import java.util.List;
  *  @author Yan Chen
  *  @version 1.0
  */
-public class UserDBHandler extends SQLiteOpenHelper {
+class UserDBHandler extends SQLiteOpenHelper {
     //Static vars
     private static final int DATABASE_VERSION = 1;
     // Logcat tag
@@ -153,6 +153,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
      */
     public UserData getUser(String information, String type) {
         String selectQuery;
+        //noinspection IfCanBeSwitch
         if (type.equals("name")) {
             selectQuery = "SELECT  * FROM " + TABLE_USERS + " WHERE "
                     + KEY_NAME + " = '" + information + "';";
@@ -167,7 +168,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
         }
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(selectQuery, null);
-        if (c.moveToFirst() == false) {
+        if (!c.moveToFirst()) {
             db.close();
             return null;
         }
@@ -308,7 +309,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
      * @param friend user2
      * @return list of the pair
      */
-    public List<Integer> getFriendPair(int user, int friend) {
+    List<Integer> getFriendPair(int user, int friend) {
         List<Integer> pair = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         String selectQuery = "SELECT * FROM " + TABLE_FRIEND + " WHERE "

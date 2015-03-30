@@ -15,6 +15,7 @@ import com.example.user.binarybeast.helper.Helper;
  * @version 1.0
  */
 
+@SuppressWarnings("UnusedParameters")
 public class MainActivity extends Activity {
     public static Helper helper;
     @Override

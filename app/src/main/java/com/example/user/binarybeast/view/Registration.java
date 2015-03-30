@@ -10,9 +10,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.user.binarybeast.R;
-import com.example.user.binarybeast.model.UserData;
-
-import java.util.NoSuchElementException;
 
 /**
  * @author Yan Chen

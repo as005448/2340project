@@ -19,15 +19,14 @@ import java.util.List;
 public class MapsActivity extends FragmentActivity {
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
-    private String location;
-    private String description;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         Bundle extras = getIntent().getExtras();
-        location = (String)extras.get("location");
-        description = (String)extras.get("description");
+        String location = (String) extras.get("location");
+//        String description = (String) extras.get("description");
         setUpMapIfNeeded();
         Geocoder coder = new Geocoder(this);
         try {
@@ -37,7 +36,7 @@ public class MapsActivity extends FragmentActivity {
                 t.show();
             }
 
-            addrs = coder.getFromLocationName(location+" Atlanta", 4, 34, -85, 33.74, -84.3);
+            addrs = coder.getFromLocationName(location +" Atlanta", 4, 34, -85, 33.74, -84.3);
             for (Address add : addrs) {
                 Toast t = Toast.makeText(this, add.toString(),Toast.LENGTH_LONG);
                 t.show();

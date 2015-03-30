@@ -30,7 +30,7 @@
         android:layout_marginTop="15dp"
         android:hint="Password"
         android:password="true"
-        tools:ignore="HardcodedText" />
+        tools:ignore="Deprecated,HardcodedText,RtlCompat" />
 
     <Button
         android:layout_width="match_parent"
@@ -40,7 +40,8 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="25dp"
         android:text="Login"
-        android:onClick="authenticateUser"/>
+        android:onClick="authenticateUser"
+        tools:ignore="HardcodedText,RtlCompat" />
 
     <Button
         android:layout_width="match_parent"
@@ -49,6 +50,7 @@
         android:text="Cancel"
         android:onClick="cancelLogin"
         android:layout_below="@+id/authenticate"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        tools:ignore="HardcodedText,RtlCompat" />
 
 </RelativeLayout>

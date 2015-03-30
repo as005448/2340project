@@ -8,6 +8,38 @@
       <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.view.MyMain void ViewSOnClick(android.view.View view)" />
       <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.view.MyMain void AddSOnClick(android.view.View view)" />
       <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.view.MyMain void AddOnClick(android.view.View view)" />
+      <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.view.FriendAdderActivity void makeNewFriend(android.view.View view)" />
+      <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.view.FriendDetail_activity void deleteFriend(android.view.View view)" />
+      <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.helper.Helper void databaseUpgrade()" />
+      <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.model.FriendTable FriendTable()" />
+      <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.model.FriendTable FriendTable(int id, int userID, int friendID)" />
+      <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.model.FriendTable void setPost(int post)" />
+      <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.model.FriendTable void setId(int id)" />
+      <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.model.FriendTable void setUserID(int userID)" />
+      <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.model.FriendTable void setFriendID(int friendID)" />
+      <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.model.FriendTable int getPost()" />
+      <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.model.FriendTable int getId()" />
+      <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.model.FriendTable int getUserID()" />
+      <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.model.FriendTable int getFriendID()" />
+      <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.view.InterestAddActivity void submitInterest(android.view.View view)" />
+      <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.model.Interest Interest()" />
+      <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.model.Interest int getOwner()" />
+      <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.model.Interest void setName(java.lang.String name)" />
+      <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.model.Interest void setCategory(java.lang.String category)" />
+      <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.model.Interest void setPrice(int price)" />
+      <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.model.Interest void setOwner(int owner)" />
+      <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.view.login_activity void authenticateUser(android.view.View view)" />
+      <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.view.login_activity void cancelLogin(android.view.View view)" />
+      <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.view.MainActivity void loginPage(android.view.View view)" />
+      <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.view.MainActivity void registerPage(android.view.View view)" />
+      <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.view.Registration void rCancel(android.view.View view)" />
+      <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.view.Registration void submit(android.view.View view)" />
+      <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.view.SaleAddActivity void submitSale(android.view.View view)" />
+      <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.view.SaleDetail_activity void goMap(android.view.View v)" />
+      <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.helper.UserDBHandler com.example.user.binarybeast.model.UserData getUser(long user_id)" />
+      <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.helper.UserDBHandler java.util.List&lt;com.example.user.binarybeast.model.Interest&gt; findInterestByName(java.lang.String name)" />
+      <entry_point TYPE="method" FQNAME="com.example.user.binarybeast.helper.UserDBHandler void forceUpdate()" />
+      <entry_point TYPE="field" FQNAME="com.example.user.binarybeast.model.Sale owner" />
     </entry_points>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">

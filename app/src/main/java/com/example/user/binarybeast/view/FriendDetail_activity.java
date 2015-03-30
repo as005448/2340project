@@ -18,10 +18,6 @@ import com.example.user.binarybeast.model.UserData;
  */
 
 public class FriendDetail_activity extends ActionBarActivity {
-    private TextView textName;
-    private TextView textEmail;
-    private TextView textRate;
-    private TextView textPost;
     private UserData friend;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +33,10 @@ public class FriendDetail_activity extends ActionBarActivity {
      * @param name name of the friend
      */
     private void initTextViews(String name) {
-        textName = (TextView) findViewById(R.id.textView_disName);
-        textEmail = (TextView) findViewById(R.id.textView_disEmail);
-        textRate = (TextView) findViewById(R.id.textView_disRate);
-        textPost = (TextView) findViewById(R.id.textView_disReport);
+        TextView textName = (TextView) findViewById(R.id.textView_disName);
+        TextView textEmail = (TextView) findViewById(R.id.textView_disEmail);
+        TextView textRate = (TextView) findViewById(R.id.textView_disRate);
+        TextView textPost = (TextView) findViewById(R.id.textView_disReport);
 
         friend = MainActivity.helper.findUser(name, "name");
         String rate = " " + friend.getRate();

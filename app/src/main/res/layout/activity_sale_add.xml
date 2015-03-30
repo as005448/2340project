@@ -29,7 +29,7 @@
         android:layout_toRightOf="@+id/textView9"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        tools:ignore="HardcodedText,RelativeOverlap" />
+        tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -53,7 +53,8 @@
         android:layout_alignLeft="@+id/itemName"
         android:layout_alignStart="@+id/itemName"
         android:layout_alignRight="@+id/itemName"
-        android:layout_alignEnd="@+id/itemName" />
+        android:layout_alignEnd="@+id/itemName"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -63,7 +64,8 @@
         android:id="@+id/textView11"
         android:layout_below="@+id/category"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        tools:ignore="HardcodedText" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -76,7 +78,8 @@
         android:layout_alignRight="@+id/category"
         android:layout_alignEnd="@+id/category"
         android:layout_alignLeft="@+id/category"
-        android:layout_alignStart="@+id/category" />
+        android:layout_alignStart="@+id/category"
+        tools:ignore="HardcodedText" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -85,7 +88,8 @@
         android:id="@+id/textView12"
         android:layout_below="@+id/price"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        tools:ignore="HardcodedText" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -98,7 +102,8 @@
         android:layout_alignRight="@+id/category"
         android:layout_alignEnd="@+id/category"
         android:layout_alignLeft="@+id/category"
-        android:layout_alignStart="@+id/category" />
+        android:layout_alignStart="@+id/category"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:layout_width="wrap_content"
@@ -108,6 +113,7 @@
         android:onClick="submitSale"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="46dp" />
+        android:layout_marginBottom="46dp"
+        tools:ignore="HardcodedText" />
 
 </RelativeLayout>

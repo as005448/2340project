@@ -74,7 +74,7 @@
             android:src="@drawable/barbuttonicon_set_hl"
             android:background="#00000000"
 
-            />
+            tools:ignore="ContentDescription" />
         <TextView
             android:text = "Shop With Friends"
             android:textColor="#ffffff"

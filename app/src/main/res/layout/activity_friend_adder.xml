@@ -47,7 +47,8 @@
         android:layout_below="@+id/r_friendName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="38dp" />
+        android:layout_marginTop="38dp"
+        tools:ignore="HardcodedText" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -56,7 +57,7 @@
         android:layout_alignTop="@+id/emailView"
         android:layout_toRightOf="@+id/friendNameView"
         android:layout_toEndOf="@+id/friendNameView"
-        tools:ignore="TextFields" />
+        tools:ignore="HardcodedText,TextFields" />
 
     <Button
         android:layout_width="match_parent"
@@ -64,6 +65,7 @@
         android:text="Add To Friends List"
         android:onClick="makeNewFriend"
         android:layout_below="@+id/r_friendEmail"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true"
+        tools:ignore="HardcodedText,RtlHardcoded" />
 
 </RelativeLayout>
