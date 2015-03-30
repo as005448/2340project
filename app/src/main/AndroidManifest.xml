@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.user.binarybeast" >
 
     <!-- To access Google+ APIs: -->
@@ -51,26 +52,14 @@
             android:label="@string/title_activity_login_activity" >
         </activity>
         <activity
-            android:name=".HomePage"
-            android:label="@string/title_activity_home_page" >
-        </activity>
-        <activity
             android:name=".view.Registration"
             android:label="@string/title_activity_registration" >
         </activity>
         <activity
-            android:name=".HubActivity"
-            android:label="@string/title_activity_hub"
-            android:parentActivityName=".view.login_activity"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
-            <meta-data
-                android:name="android.support.UI_OPTIONS"
-                android:value="splitActionBarWhenNarrow" />
-        </activity>
-        <activity
             android:name=".view.FriendAdderActivity"
             android:label="Search Friend"
-            android:parentActivityName=".view.MyMain" >
+            android:parentActivityName=".view.MyMain"
+            tools:ignore="UnusedAttribute">
         </activity>
         <activity
             android:name=".view.MyMain"
@@ -83,12 +72,14 @@
         <activity
             android:name=".view.FriendDetail_activity"
             android:label="Friend Detail"
-            android:parentActivityName=".view.MyMain" >
+            android:parentActivityName=".view.MyMain"
+            tools:ignore="UnusedAttribute">
         </activity>
         <activity
             android:name=".view.InterestAddActivity"
             android:label="@string/title_activity_interest_add"
-            android:parentActivityName=".view.MyMain" >
+            android:parentActivityName=".view.MyMain"
+            tools:ignore="UnusedAttribute">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.user.binarybeast.view.MyMain" />
@@ -96,7 +87,8 @@
         <activity
             android:name=".view.InterestListActivity"
             android:label="@string/title_activity_interest_list"
-            android:parentActivityName=".view.MyMain" >
+            android:parentActivityName=".view.MyMain"
+            tools:ignore="UnusedAttribute">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.user.binarybeast.view.MyMain" />
@@ -104,17 +96,20 @@
         <activity
             android:name=".view.SaleListActivity"
             android:label="@string/title_activity_sale_list"
-            android:parentActivityName=".view.MyMain" >
+            android:parentActivityName=".view.MyMain"
+            tools:ignore="UnusedAttribute">
         </activity>
         <activity
             android:name=".view.SaleAddActivity"
             android:label="@string/title_activity_sale_add"
-            android:parentActivityName=".view.MyMain" >
+            android:parentActivityName=".view.MyMain"
+            tools:ignore="UnusedAttribute">
         </activity>
         <activity
             android:name=".view.SaleDetail_activity"
             android:label="@string/title_activity_sale_detail_activity"
-            android:parentActivityName=".view.SaleListActivity" >
+            android:parentActivityName=".view.SaleListActivity"
+            tools:ignore="UnusedAttribute">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.user.binarybeast.view.SaleListActivity" />

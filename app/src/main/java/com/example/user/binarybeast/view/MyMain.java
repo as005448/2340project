@@ -18,7 +18,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.user.binarybeast.R;
-import com.example.user.binarybeast.model.Interest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +28,7 @@ import java.util.List;
  * @version 1.0
  */
 
+@SuppressWarnings("ALL")
 public class MyMain extends Activity implements View.OnClickListener {
     private ViewPager myViewPager;
     private PagerAdapter myAdapter;
@@ -230,7 +230,7 @@ public class MyMain extends Activity implements View.OnClickListener {
      * jump to add interest page
      * @param view current view
      */
-    public void AddOnClick(View view) {
+    public void AddOnClick(@SuppressWarnings("UnusedParameters") View view) {
         Intent intent = new Intent(this, InterestAddActivity.class);
         startActivity(intent);
     }
@@ -248,6 +248,7 @@ public class MyMain extends Activity implements View.OnClickListener {
      * jump to view sale page
      * @param view current view
      */
+    @SuppressWarnings("UnusedParameters")
     public void ViewSOnClick(View view) {
         Intent intent = new Intent(this, SaleListActivity.class);
         startActivity(intent);

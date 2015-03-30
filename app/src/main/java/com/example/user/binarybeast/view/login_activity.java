@@ -9,8 +9,6 @@ import android.widget.Toast;
 
 import com.example.user.binarybeast.R;
 
-import java.util.NoSuchElementException;
-
 /**
  * @author Yan Chen
  * @version 1.0
@@ -29,6 +27,7 @@ public class login_activity extends Activity {
      *  @param view the view of current activity
      *
      */
+    @SuppressWarnings("UnusedParameters")
     public void authenticateUser(View view) {
         EditText usernameEntry = (EditText) findViewById(R.id.usernameText);
         EditText passwordEntry = (EditText) findViewById(R.id.passwordText);
@@ -53,6 +52,7 @@ public class login_activity extends Activity {
      *  @param view the view of current activity
      *
      */
+    @SuppressWarnings("UnusedParameters")
     public void cancelLogin(View view){
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);

@@ -14,9 +14,10 @@ import java.util.NoSuchElementException;
  * Created by Yan on 2015/2/23.
  * @author Yan Chen
  */
+@SuppressWarnings("ALL")
 public class Helper {
 
-    private UserDBHandler dataBase;
+    private final UserDBHandler dataBase;
     public UserData currUser;
 
     public Helper(Context context) {

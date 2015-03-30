@@ -5,7 +5,7 @@ package com.example.user.binarybeast.model;
  * @author Yan Chen
  * @version 1.0
  */
-public class FriendTable {
+class FriendTable {
     private int id;
     private int userID;
     private int friendID;
@@ -30,7 +30,7 @@ public class FriendTable {
     }
     /**
      * setter for number of post
-     * @param post
+     * @param post post
      */
     public void setPost(int post) {
         this.post = post;
@@ -38,7 +38,7 @@ public class FriendTable {
 
     /**
      * setter for friend table's id
-     * @param id
+     * @param id id
      */
     public void setId(int id) {
         this.id = id;
@@ -46,7 +46,7 @@ public class FriendTable {
 
     /**
      * setter for user's id
-     * @param userID
+     * @param userID user id
      */
     public void setUserID(int userID) {
         this.userID = userID;
@@ -54,7 +54,7 @@ public class FriendTable {
 
     /**
      * setter for friend's id
-     * @param friendID
+     * @param friendID friend id
      */
     public void setFriendID(int friendID) {
         this.friendID = friendID;

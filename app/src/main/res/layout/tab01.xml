@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -11,21 +12,24 @@
         android:text="Add Interest"
         android:id="@+id/button_add"
         android:layout_gravity="center_horizontal"
-        android:onClick="AddOnClick"/>
+        android:onClick="AddOnClick"
+        tools:ignore="HardcodedText" />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add Sale"
         android:id="@+id/button_add_s"
         android:layout_gravity="center_horizontal"
-        android:onClick="AddSOnClick"/>
+        android:onClick="AddSOnClick"
+        tools:ignore="HardcodedText" />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="View Sales"
         android:id="@+id/button_view_sales"
         android:layout_gravity="center_horizontal"
-        android:onClick="ViewSOnClick"/>
+        android:onClick="ViewSOnClick"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:layout_width="fill_parent"
@@ -33,5 +37,6 @@
         android:gravity="center"
         android:text="These are hot deals!"
         android:textSize="30sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        tools:ignore="HardcodedText" />
 </LinearLayout>

@@ -45,7 +45,7 @@ public class SaleListActivity extends ActionBarActivity {
             salesNames.add(s.getName());
         }
         //set up listview adapter
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, salesNames);
         ListView interestListView = (ListView) findViewById(R.id.saleList);
         interestListView.setAdapter(adapter);

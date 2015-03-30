@@ -1,19 +1,19 @@
 package com.example.user.binarybeast.model;
 
 /**
- * Created by marcus on 3/10/15.
+ * @author Marcus
+ * @version 1.0
  */
-
-/**
- * Class to represent a sale.
- */
+@SuppressWarnings("CanBeFinal")
 public class Sale {
     private String name;
     private String category;
     private String location;
     private int price;
+    @SuppressWarnings("FieldCanBeLocal")
     private int owner;
 
+    @SuppressWarnings("SameParameterValue")
     public Sale(String name, String category, int price, String location, int owner) {
         this.name = name;
         this.category = category;

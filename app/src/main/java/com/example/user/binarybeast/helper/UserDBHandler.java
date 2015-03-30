@@ -7,8 +7,6 @@ import android.content.Context;
 import android.content.ContentValues;
 import android.util.Log;
 
-import com.example.user.binarybeast.Friend;
-import com.example.user.binarybeast.model.FriendTable;
 import com.example.user.binarybeast.model.Interest;
 import com.example.user.binarybeast.model.Sale;
 import com.example.user.binarybeast.model.UserData;
@@ -21,7 +19,7 @@ import java.util.List;
  *  @author Yan Chen
  *  @version 1.0
  */
-public class UserDBHandler extends SQLiteOpenHelper {
+class UserDBHandler extends SQLiteOpenHelper {
     //Static vars
     private static final int DATABASE_VERSION = 1;
     // Logcat tag
@@ -131,6 +129,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
      * @param email email of the new user
      * @return user's id
      */
+    @SuppressWarnings("UnusedReturnValue")
     public long addUser(String user, String pass, String name, String email) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -154,6 +153,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
      */
     public UserData getUser(String information, String type) {
         String selectQuery;
+        //noinspection IfCanBeSwitch
         if (type.equals("name")) {
             selectQuery = "SELECT  * FROM " + TABLE_USERS + " WHERE "
                     + KEY_NAME + " = '" + information + "';";
@@ -168,7 +168,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
         }
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(selectQuery, null);
-        if (c.moveToFirst() == false) {
+        if (!c.moveToFirst()) {
             db.close();
             return null;
         }
@@ -283,6 +283,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
      * @param friend_id friend of the new friend relation
      * @return friend table's id
      */
+    @SuppressWarnings("UnusedReturnValue")
     public long addFriend(long user_id, long friend_id) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -308,7 +309,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
      * @param friend user2
      * @return list of the pair
      */
-    public List<Integer> getFriendPair(int user, int friend) {
+    List<Integer> getFriendPair(int user, int friend) {
         List<Integer> pair = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         String selectQuery = "SELECT * FROM " + TABLE_FRIEND + " WHERE "
@@ -348,6 +349,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
      * @param owner owner of the new interest
      * @return interest's id
      */
+    @SuppressWarnings("UnusedReturnValue")
     public long addInterest(String name, String category, String price, int owner) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -420,6 +422,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
      * @param owner owner of the new interest
      * @return sale's id
      */
+    @SuppressWarnings({"UnusedParameters", "UnusedReturnValue"})
     public long addSale(String name, String category, String price, String location, int owner) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();

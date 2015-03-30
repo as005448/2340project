@@ -1,7 +1,8 @@
 package com.example.user.binarybeast.model;
 
 /**
- * Created by Administrator on 2015/3/1.
+ * @author Yan Chen
+ * @version 1.0
  */
 public class Interest {
     private String name;
@@ -62,7 +63,7 @@ public class Interest {
 
     /**
      * setter for name
-     * @param name
+     * @param name name
      */
     public void setName(String name) {
         this.name = name;
@@ -70,7 +71,7 @@ public class Interest {
 
     /**
      * setter for category
-     * @param category
+     * @param category category
      */
     public void setCategory(String category) {
         this.category = category;
@@ -78,7 +79,7 @@ public class Interest {
 
     /**
      * setter for price
-     * @param price
+     * @param price price
      */
     public void setPrice(int price) {
         this.price = price;
@@ -86,7 +87,7 @@ public class Interest {
 
     /**
      * setter for owner
-     * @param owner
+     * @param owner owner
      */
     public void setOwner(int owner) {
         this.owner = owner;

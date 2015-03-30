@@ -1,8 +1,8 @@
 package com.example.user.binarybeast.view;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,14 +10,8 @@ import android.widget.TextView;
 
 import com.example.user.binarybeast.R;
 import com.example.user.binarybeast.model.Sale;
-import com.example.user.binarybeast.model.UserData;
 
 public class SaleDetail_activity extends ActionBarActivity {
-    private TextView textName;
-    private TextView textCategory;
-    private TextView textPrice;
-    private TextView textLocation;
-    private Sale sale;
     private String name;
     private String location;
     @Override
@@ -30,12 +24,12 @@ public class SaleDetail_activity extends ActionBarActivity {
         initTextViews(name);
     }
     private void initTextViews(String name) {
-        textName = (TextView) findViewById(R.id.itemName);
-        textCategory = (TextView) findViewById(R.id.category);
-        textPrice = (TextView) findViewById(R.id.price);
-        textLocation = (TextView) findViewById(R.id.location);
+        TextView textName = (TextView) findViewById(R.id.itemName);
+        TextView textCategory = (TextView) findViewById(R.id.category);
+        TextView textPrice = (TextView) findViewById(R.id.price);
+        TextView textLocation = (TextView) findViewById(R.id.location);
 
-        sale = MainActivity.helper.getSaleByName(name);
+        Sale sale = MainActivity.helper.getSaleByName(name);
         String cname = " " + name;
         String category = " " + sale.getCategory();
         String price = " " + sale.getPrice();
@@ -46,6 +40,7 @@ public class SaleDetail_activity extends ActionBarActivity {
         textLocation.setText(location.toCharArray(), 0, location.length());
     }
 
+    @SuppressWarnings("UnusedParameters")
     public void goMap(View v) {
         Intent i = new Intent(this,MapsActivity.class);
         i.putExtra("location",location);

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="55dp"
     android:background="@drawable/title_bar"
     android:orientation="horizontal"
-    >
+    tools:ignore="DisableBaselineAlignment,Overdraw">
 
 <LinearLayout
     android:id="@+id/id_tab_sales"
@@ -22,13 +23,13 @@
         android:src="@drawable/barbuttonicon_camera_hl"
         android:background="#00000000"
 
-        />
+        tools:ignore="ContentDescription" />
     <TextView
         android:text = "Shop With Friends"
         android:textColor="#ffffff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
+        tools:ignore="HardcodedText" />
 
     </LinearLayout>
 
@@ -48,13 +49,13 @@
             android:src="@drawable/contacts_add_friend_hl"
             android:background="#00000000"
 
-            />
+            tools:ignore="ContentDescription" />
         <TextView
             android:text = "Shop With Friends"
             android:textColor="#ffffff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
+            tools:ignore="HardcodedText" />
 
     </LinearLayout>
     <LinearLayout
@@ -73,13 +74,13 @@
             android:src="@drawable/barbuttonicon_set_hl"
             android:background="#00000000"
 
-            />
+            tools:ignore="ContentDescription" />
         <TextView
             android:text = "Shop With Friends"
             android:textColor="#ffffff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
+            tools:ignore="HardcodedText" />
 
     </LinearLayout>
 
