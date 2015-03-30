@@ -309,6 +309,7 @@ class UserDBHandler extends SQLiteOpenHelper {
      * @param friend user2
      * @return list of the pair
      */
+    @SuppressWarnings("WeakerAccess")
     List<Integer> getFriendPair(int user, int friend) {
         List<Integer> pair = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
