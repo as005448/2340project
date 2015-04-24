@@ -19,10 +19,18 @@ public class Helper {
 
     private final UserDBHandler dataBase;
     public UserData currUser;
+    private static Helper singleton = null;
 
     public Helper(Context context) {
         this.dataBase = new UserDBHandler(context);
         defaultUser();
+    }
+
+    public static Helper getInstance(Context context) {
+        if(singleton == null) {
+            singleton = new Helper(context);
+        }
+        return singleton;
     }
 
 

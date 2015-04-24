@@ -57,4 +57,9 @@ public class login_activity extends Activity {
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
     }
+
+    public void passwordRecovery(View view){
+        Intent intent = new Intent(this,PasswordRecoveryActivity.class);
+        startActivity(intent);
+    }
 }

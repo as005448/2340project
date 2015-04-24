@@ -23,7 +23,8 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-    <application android:name=".helper.ApplicationContextProvider"
+    <application
+        android:name=".helper.ApplicationContextProvider"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -59,7 +60,7 @@
             android:name=".view.FriendAdderActivity"
             android:label="Search Friend"
             android:parentActivityName=".view.MyMain"
-            tools:ignore="UnusedAttribute">
+            tools:ignore="UnusedAttribute" >
         </activity>
         <activity
             android:name=".view.MyMain"
@@ -73,13 +74,13 @@
             android:name=".view.FriendDetail_activity"
             android:label="Friend Detail"
             android:parentActivityName=".view.MyMain"
-            tools:ignore="UnusedAttribute">
+            tools:ignore="UnusedAttribute" >
         </activity>
         <activity
             android:name=".view.InterestAddActivity"
             android:label="@string/title_activity_interest_add"
             android:parentActivityName=".view.MyMain"
-            tools:ignore="UnusedAttribute">
+            tools:ignore="UnusedAttribute" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.user.binarybeast.view.MyMain" />
@@ -88,7 +89,7 @@
             android:name=".view.InterestListActivity"
             android:label="@string/title_activity_interest_list"
             android:parentActivityName=".view.MyMain"
-            tools:ignore="UnusedAttribute">
+            tools:ignore="UnusedAttribute" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.user.binarybeast.view.MyMain" />
@@ -97,19 +98,19 @@
             android:name=".view.SaleListActivity"
             android:label="@string/title_activity_sale_list"
             android:parentActivityName=".view.MyMain"
-            tools:ignore="UnusedAttribute">
+            tools:ignore="UnusedAttribute" >
         </activity>
         <activity
             android:name=".view.SaleAddActivity"
             android:label="@string/title_activity_sale_add"
             android:parentActivityName=".view.MyMain"
-            tools:ignore="UnusedAttribute">
+            tools:ignore="UnusedAttribute" >
         </activity>
         <activity
             android:name=".view.SaleDetail_activity"
             android:label="@string/title_activity_sale_detail_activity"
             android:parentActivityName=".view.SaleListActivity"
-            tools:ignore="UnusedAttribute">
+            tools:ignore="UnusedAttribute" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.user.binarybeast.view.SaleListActivity" />
@@ -125,6 +126,10 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.user.binarybeast.view.SaleDetail_activity" />
+        </activity>
+        <activity
+            android:name=".view.PasswordRecoveryActivity"
+            android:label="@string/title_activity_password_recovery" >
         </activity>
     </application>
 

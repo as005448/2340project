@@ -23,7 +23,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (helper == null) {
-            helper = new Helper(getApplicationContext());
+            helper = Helper.getInstance(getApplicationContext());
+            //helper = new Helper(getApplicationContext());
         }
     }
 
